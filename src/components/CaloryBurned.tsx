@@ -1,6 +1,6 @@
 const CaloryBurned = () => {
     return (
-        <div className="bg-zinc-500 h-full">
+        <div className="bg-zinc-200 h-full p-3">
             <h1>Calories</h1>
             <div>
                 <p>Consumed</p>

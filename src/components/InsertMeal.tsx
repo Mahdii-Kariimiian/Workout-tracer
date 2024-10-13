@@ -17,7 +17,7 @@ const InsertMeal = () => {
     } = useContext(Context);
 
     return (
-        <div className="p-10 bg-gray-600">
+        <div className="p-10 bg-blue-500">
             <form noValidate action="" className="flex flex-col gap-3">
                 <label htmlFor="meal">Meal</label>
                 <input

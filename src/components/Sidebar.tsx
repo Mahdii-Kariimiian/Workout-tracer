@@ -5,7 +5,7 @@ import { IoIosSettings } from "react-icons/io";
 
 const Sidebar = () => {
     return (
-        <div className="flex flex-col py-10 px-7 bg-red-400 h-full">
+        <div className="flex flex-col py-10 px-7 h-screen">
             <div>
                 <div className="flex justify-center items-center w-8 h-8 bg-black rounded-full">
                     <div className="w-4 h-4 bg-white rounded-full"></div>

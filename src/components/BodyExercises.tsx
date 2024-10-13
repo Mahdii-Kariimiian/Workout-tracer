@@ -2,14 +2,14 @@ import bodyMuscles from "../assets/images/body muscles.avif";
 
 const BodyExercises = () => {
     return (
-        <div className="bg-yellow-600 h-full">
-            <div>
+        <div className="max-h-full">
+            <div className="flex gap-2 p-3">
                 <p>Chest</p>
                 <p>Shoulders</p>
                 <p>Abs</p>
                 <p>Legs</p>
             </div>
-            <img src={bodyMuscles} alt="bodyMuscles" />
+            <img className="h-full" src={bodyMuscles} alt="bodyMuscles" />
         </div>
     );
 };

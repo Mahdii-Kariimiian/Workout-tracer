@@ -34,23 +34,23 @@ function App() {
         >
             <div className="flex">
                 <Sidebar />
-                <div className="grid grid-cols-12 grid-rows-3 bg-lime-300">
-                    <div className="col-span-6">
+                <div className="grid grid-cols-12 grid-rows-3 h-screen">
+                    <div className="col-span-4">
                         <MainInfo />
                     </div>
-                    <div className="col-span-6 ">
+                    <div className="col-span-8 ">
                         <Title />
                     </div>
-                    <div className="col-span-6">
+                    <div className="col-span-4">
                         <Consumed />
                     </div>
-                    <div className="col-span-3 row-span-2">
+                    <div className="col-span-4 row-span-2">
                         <BodyExercises />
                     </div>
-                    <div className="col-span-3 row-span-2">
+                    <div className="col-span-4 row-span-2">
                         <CaloryBurned />
                     </div>
-                    <div className="col-span-6">
+                    <div className="col-span-4">
                         <CaloryInserted />
                     </div>
                 </div>

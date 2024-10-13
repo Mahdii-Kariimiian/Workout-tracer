@@ -6,12 +6,12 @@ const CaloryInserted = () => {
     const { isModal, setIsModal } = useContext(Context);
     console.log(isModal, setIsModal);
     return (
-        <div className="bg-teal-400 h-full">
-            <div>
+        <div className="p-3 h-full space-y-2 bg-zinc-200">
+            <div className="bg-blue-500 p-3">
                 <p>Brazilian Stew</p>
                 <p>Lunch</p>
             </div>
-            <button onClick={() => setIsModal(!isModal)}>
+            <button className="bg-sky-950 text-white p-3" onClick={() => setIsModal(!isModal)}>
                 Enter Your Meal
             </button>
 

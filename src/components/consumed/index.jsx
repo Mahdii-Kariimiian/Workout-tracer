@@ -9,7 +9,7 @@ const index = () => {
     ];
 
     return (
-        <div className="grid grid-cols-2 bg-green-500 h-full">
+        <div className="grid grid-cols-2 h-full">
             <ConsumedBox />
             <ConsumedBox />
             <ConsumedBox />
