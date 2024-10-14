@@ -7,7 +7,7 @@ const CaloryInserted = () => {
     console.log(isModal, setIsModal);
     return (
         <div className="p-3 h-full space-y-2 bg-zinc-200">
-            <div className="bg-blue-500 p-3">
+            <div className="bg-sky-900 text-white p-3">
                 <p>Brazilian Stew</p>
                 <p>Lunch</p>
             </div>

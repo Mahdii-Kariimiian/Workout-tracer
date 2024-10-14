@@ -3,7 +3,7 @@ import bodyMuscles from "../assets/images/body muscles.avif";
 const BodyExercises = () => {
     return (
         <div className="max-h-full">
-            <div className="flex gap-2 p-3">
+            <div className="flex gap-2 justify-evenly p-3">
                 <p>Chest</p>
                 <p>Shoulders</p>
                 <p>Abs</p>
