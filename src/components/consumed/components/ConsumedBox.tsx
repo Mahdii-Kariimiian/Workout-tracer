@@ -1,19 +1,10 @@
 import React from "react";
+import { ConsumedBoxProps } from "../../../types";
 
-type ConsumedItem = {
-    title: string;
-    quantity: number;
-    icon: string;
-};
-
-type ConsumedBoxProps = {
-    consumedArray: ConsumedItem[];
-};
-
-const ConsumedBox: React.FC<ConsumedBoxProps> = ({ consumedArray }) => {
+const ConsumedBox: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({ consumedInfo }) => {
     return (
         <div className="grid grid-cols-2 border border-sky-800 text-white">
-            {consumedArray.map((item, index) => (
+            {consumedInfo.map((item, index) => (
                 <div
                     key={index}
                     className={`px-3 py-4 ${
@@ -22,7 +13,9 @@ const ConsumedBox: React.FC<ConsumedBoxProps> = ({ consumedArray }) => {
                 >
                     <p className="text-4xl flex justify-end">{item.icon}</p>
                     <p className="text-gray-400">{item.title}</p>
-                    <p className="text-lg">{item.quantity} {item.title === "Water" ? "L" : "gr"}</p>
+                    <p className="text-lg">
+                        {item.quantity} {item.title === "Water" ? "L" : "gr"}
+                    </p>
                 </div>
             ))}
         </div>

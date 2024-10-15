@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+//Components
 import MainInfo from "./components/MainInfo";
 import Sidebar from "./components/Sidebar";
 import Title from "./components/Title";
@@ -6,30 +7,41 @@ import Consumed from "./components/consumed";
 import BodyExercises from "./components/BodyExercises";
 import CaloryInserted from "./components/CaloryInserted";
 import CaloryBurned from "./components/CaloryBurned";
+//Css Files
 import "./App.css";
-export const Context = createContext<Object>({});
+//Types
+import { ConsumedArray, AppContextType, BurnedArray } from "./types";
+//Context
+export const Context = createContext<AppContextType>({
+    isModal: false,
+    setIsModal: () => {},
+    consumedArray: [],
+    setConsumedArray: () => {},
+    burnedArray: [],
+    setBurnedArray: () => {},
+    isModalExercise: false,
+    setIsModalExercise: () => {},
+});
+
 function App() {
+    // States for Context //
     const [isModal, setIsModal] = useState<boolean>(false);
-    const [name, setName] = useState<String>("");
-    const [carbs, setCarbs] = useState<Number>(0);
-    const [protein, setProtein] = useState<Number>(0);
-    const [fat, setFat] = useState<Number>(0);
-    const [sum, setSum] = useState<Number>(0);
+    const [isModalExercise, setIsModalExercise] = useState<boolean>(false);
+    const [consumedArray, setConsumedArray] = useState<ConsumedArray[]>([]);
+    const [burnedArray, setBurnedArray] = useState<BurnedArray[]>([]);
+    console.log(consumedArray, burnedArray);
+
     return (
         <Context.Provider
             value={{
                 isModal,
                 setIsModal,
-                name,
-                setName,
-                carbs,
-                setCarbs,
-                protein,
-                setProtein,
-                fat,
-                setFat,
-                sum,
-                setSum,
+                setConsumedArray,
+                consumedArray,
+                burnedArray,
+                setBurnedArray,
+                isModalExercise,
+                setIsModalExercise,
             }}
         >
             <div className="flex">

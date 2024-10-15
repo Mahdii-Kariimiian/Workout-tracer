@@ -1,40 +1,32 @@
 import { useContext, useState } from "react";
 import { Context } from "../App";
-
-type InsertMealTypes = {
-    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
-    name: string;
-    setName: React.Dispatch<React.SetStateAction<number | null>>;
-    protein: number;
-    setProtein: React.Dispatch<React.SetStateAction<number | null>>;
-    fat: number;
-    setFat: React.Dispatch<React.SetStateAction<number | null>>;
-    sum: number;
-    setSum: React.Dispatch<React.SetStateAction<number | null>>;
-    carbs: number;
-    setCarbs: React.Dispatch<React.SetStateAction<number | null>>;
-};
+import { AppContextType } from "../types";
 
 const InsertMeal = () => {
-    const {
-        setIsModal,
-        name,
-        setName,
-        protein,
-        setProtein,
-        fat,
-        setFat,
-        sum,
-        setSum,
-        carbs,
-        setCarbs,
-    } = useContext<InsertMealTypes>(Context);
+    const { setIsModal, setConsumedArray } =
+        useContext<AppContextType>(Context);
+    const [name, setName] = useState<string>("");
+    const [carbs, setCarbs] = useState<number>(0);
+    const [protein, setProtein] = useState<number>(0);
+    const [fat, setFat] = useState<number>(0);
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        setIsModal?.(false);
+        const sum = protein + fat + carbs;
+        setConsumedArray?.((prev) => [
+            ...prev,
+            { name: name, carbs: carbs, protein: protein, fat: fat, sum: sum },
+        ]);
+    };
     return (
         <div className="p-10 bg-blue-500">
-            <form noValidate action="" className="flex flex-col gap-3">
-                <label htmlFor="meal">Meal</label>
+            <form noValidate action="" className="flex flex-col">
+                <label className="mb-1" htmlFor="meal">
+                    Meal
+                </label>
                 <input
+                    className="mb-3"
                     onChange={(e) => setName(e.target.value)}
                     value={name as string}
                     type="text"
@@ -42,18 +34,25 @@ const InsertMeal = () => {
                     id="meal"
                     placeholder="meal"
                 />
-                <label htmlFor="protein">Protein</label>
+                <label className="mb-1" htmlFor="protein">
+                    Protein
+                </label>
                 <input
-                    onChange={(e) => setProtein(e.target.value)}
+                    className="mb-3"
+                    required
+                    onChange={(e) => setProtein(parseFloat(e.target.value))}
                     value={protein as number}
                     type="number"
                     name="protein"
                     id="protein"
                     placeholder="protein"
                 />
-                <label htmlFor="carbs">Carbs</label>
+                <label className="mb-1" htmlFor="carbs">
+                    Carbs
+                </label>
                 <input
-                    onChange={(e) => setCarbs(e.target.value)}
+                    className="mb-3"
+                    onChange={(e) => setCarbs(parseFloat(e.target.value))}
                     value={carbs as number}
                     type="number"
                     name="carbs"
@@ -62,16 +61,20 @@ const InsertMeal = () => {
                 />
                 <label htmlFor="fat">Fat</label>
                 <input
-                    onChange={(e) => setFat(e.target.value)}
+                    className="mb-7"
+                    onChange={(e) => setFat(parseFloat(e.target.value))}
                     value={fat as number}
                     type="number"
                     name="fat"
                     id="fat"
                     placeholder="fat"
                 />
-                <label htmlFor="sum">Sum</label>
-                <input type="text" name="sum" id="sum" placeholder="sum" />
-                <button onClick={() => setIsModal(false)}>submit</button>
+                <button
+                    className="bg-sky-950 text-white px-3 py-1"
+                    onClick={(e) => handleClick(e)}
+                >
+                    submit
+                </button>
             </form>
         </div>
     );
