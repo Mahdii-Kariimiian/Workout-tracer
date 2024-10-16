@@ -6,7 +6,7 @@ import { ConsumedArray } from "../types";
 const CaloryInserted = () => {
     const { isModal, setIsModal, consumedArray, setIsModalExercise } =
         useContext(Context);
-    console.log(consumedArray);
+   
     return (
         <div className="p-3 space-y-2 bg-zinc-200">
             {consumedArray &&

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { IoIosWater } from "react-icons/io";
 import { FaBurn } from "react-icons/fa";
@@ -7,11 +7,18 @@ import { AppContextType } from "../types";
 import InsertExercise from "./InsertExercise";
 
 const CaloryBurned = () => {
-    const { isModalExercise, setIsModalExercise, setIsModal } =
+    const { isModalExercise, setIsModalExercise, setIsModal, burnedArray } =
         useContext<AppContextType>(Context);
 
-    const [rate, SetRate] = useState<number>(0);
-    const [inputRate, setInputRate] = useState<number>(0);
+    const [heartRate, setHeartRate] = useState<number>(0);
+
+    useEffect(() => {
+        burnedArray.map((exercise, index) => {
+            index === burnedArray.length - 1 &&
+                setHeartRate(exercise.heartRate);
+        });
+    });
+
     return (
         <div className="bg-zinc-200 h-full p-5 flex flex-col justify-between">
             <div className="space-y-2">
@@ -41,20 +48,8 @@ const CaloryBurned = () => {
                         <h2 className="text-3xl mb-2">Heart</h2>
                         <div className="mb-2">
                             <p className="text-gray-800">Rate</p>
-                            <p className="text-xl">{rate}</p>
+                            <p className="text-xl">{heartRate}</p>
                         </div>
-                        <input
-                            className="px-3 py-1"
-                            type="text"
-                            placeholder="Heart rate"
-                            value={rate}
-                            onChange={(e) =>
-                                SetRate(parseFloat(e.target.value))
-                            }
-                        />
-                        <button className=" bg-sky-950 text-white px-3 py-1">
-                            Enter
-                        </button>
                     </div>
                     <TbActivityHeartbeat className="text-7xl" />
                 </div>

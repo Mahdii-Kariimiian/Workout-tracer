@@ -29,17 +29,17 @@ const InsertExercise = () => {
     return (
         <div className="p-10 bg-blue-500">
             <form noValidate action="" className="flex flex-col">
-                <label className="mb-1" htmlFor="meal">
-                    Meal
+                <label className="mb-1" htmlFor="exercise">
+                    Exercise
                 </label>
                 <input
                     className="mb-3"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     type="text"
-                    name="meal"
-                    id="meal"
-                    placeholder="meal"
+                    name="exercise"
+                    id="exercise"
+                    placeholder="exercise"
                 />
                 <label className="mb-1" htmlFor="heartRate">
                     Heart Rate

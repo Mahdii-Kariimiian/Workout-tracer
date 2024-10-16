@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 //Components
 import MainInfo from "./components/MainInfo";
 import Sidebar from "./components/Sidebar";
-import Title from "./components/Title";
+import Exercise from "./components/exercise";
 import Consumed from "./components/consumed";
 import BodyExercises from "./components/BodyExercises";
 import CaloryInserted from "./components/CaloryInserted";
@@ -29,7 +29,7 @@ function App() {
     const [isModalExercise, setIsModalExercise] = useState<boolean>(false);
     const [consumedArray, setConsumedArray] = useState<ConsumedArray[]>([]);
     const [burnedArray, setBurnedArray] = useState<BurnedArray[]>([]);
-    console.log(consumedArray, burnedArray);
+    console.log("render");
 
     return (
         <Context.Provider
@@ -51,7 +51,7 @@ function App() {
                         <MainInfo />
                     </div>
                     <div className="col-span-8 ">
-                        <Title />
+                        <Exercise />
                     </div>
                     <div className="col-span-4">
                         <Consumed />
