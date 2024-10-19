@@ -1,78 +1,52 @@
 import { useState, useContext, useEffect } from "react";
 import { TbActivityHeartbeat } from "react-icons/tb";
-import { IoIosWater } from "react-icons/io";
 import { FaBurn } from "react-icons/fa";
 import { Context } from "../App";
 import { AppContextType } from "../types";
 import InsertExercise from "./InsertExercise";
 
 const CaloryBurned = () => {
-    const { isModalExercise, setIsModalExercise, setIsModal, burnedArray } =
+    const { isModalExercise, burnedArray, isLogged } =
         useContext<AppContextType>(Context);
 
     const [heartRate, setHeartRate] = useState<number>(0);
 
     useEffect(() => {
-        burnedArray.map((exercise, index) => {
-            index === burnedArray.length - 1 &&
-                setHeartRate(exercise.heartRate);
-        });
-    });
+        if (burnedArray && burnedArray.length > 0) {
+            setHeartRate(burnedArray[burnedArray.length - 1].heartRate);
+        }
+    }, [burnedArray]);
 
     return (
-        <div className="bg-zinc-200 h-full p-5 flex flex-col justify-between">
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h2 className="text-3xl mb-2">Calories</h2>
-                        <div>
-                            <p className="text-gray-800">Consumed</p>
-                            <p className="text-xl">130 Cal</p>
-                        </div>
-                    </div>
-                    <FaBurn className="text-7xl" />
+        <div className="bg-gray-200 text-white h-full flex flex-col">
+            <div className="flex flex-1 justify-between items-center bg-sky-950 p-3">
+                <div className="space-y-2 ">
+                    <p className="text-gray-400 font-agdasima text-xl">
+                        Calories Consumed
+                    </p>
+                    <p className="text-xl font-josefin">
+                        {isLogged && burnedArray.length > 0
+                            ? burnedArray[burnedArray.length - 1].caloriesBurned
+                            : "-"}
+                        Kcal
+                    </p>
                 </div>
-                <button
-                    onClick={() => {
-                        setIsModal?.(false);
-                        setIsModalExercise?.(!isModalExercise);
-                    }}
-                    className=" bg-sky-950 text-white px-3 py-1"
-                >
-                    Enter Exercise
-                </button>
+
+                <FaBurn className="text-4xl" />
             </div>
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h2 className="text-3xl mb-2">Heart</h2>
-                        <div className="mb-2">
-                            <p className="text-gray-800">Rate</p>
-                            <p className="text-xl">{heartRate}</p>
-                        </div>
-                    </div>
-                    <TbActivityHeartbeat className="text-7xl" />
+
+            <div className="flex flex-1 justify-between items-center bg-sky-900 p-3">
+                <div className="space-y-2">
+                    <p className="text-gray-400 font-agdasima text-xl">
+                        Heart Rate
+                    </p>
+                    <p className="text-xl font-josefin">
+                        {isLogged && burnedArray.length > 0 ? heartRate : "-"}{" "}
+                        Rpm
+                    </p>
                 </div>
-            </div>
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h2 className="text-3xl mb-2">Water</h2>
-                        <div className="mb-2">
-                            <p className="text-gray-800">Consumed</p>
-                            <p className="text-xl"> 2 L</p>
-                        </div>
-                        <input
-                            className="px-3 py-1"
-                            type="text"
-                            placeholder="Water"
-                        />
-                        <button className="bg-sky-950 text-white px-3 py-1">
-                            Enter
-                        </button>
-                    </div>
-                    <IoIosWater className="text-7xl" />
-                </div>
+
+                <TbActivityHeartbeat className="text-4xl" />
             </div>
 
             {isModalExercise && (

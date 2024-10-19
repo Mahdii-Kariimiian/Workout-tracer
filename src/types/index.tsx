@@ -4,6 +4,7 @@ export type ConsumedArray = {
     fat: number;
     protein: number;
     sum: number;
+    water: number;
 };
 
 export type BurnedArray = {
@@ -20,14 +21,18 @@ export type InsertMealTypes = {
 };
 
 export interface AppContextType {
-    isModal?: boolean;
-    setIsModal?: React.Dispatch<React.SetStateAction<boolean>>;
+    isModal: boolean;
+    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
     isModalExercise: boolean;
-    setIsModalExercise?: React.Dispatch<React.SetStateAction<boolean>>;
-    consumedArray?: ConsumedArray[];
-    setConsumedArray?: React.Dispatch<React.SetStateAction<ConsumedArray[]>>;
-    setBurnedArray?: React.Dispatch<React.SetStateAction<BurnedArray[]>>;
+    setIsModalExercise: React.Dispatch<React.SetStateAction<boolean>>;
+    consumedArray: ConsumedArray[];
+    setConsumedArray: React.Dispatch<React.SetStateAction<ConsumedArray[]>>;
+    setBurnedArray: React.Dispatch<React.SetStateAction<BurnedArray[]>>;
     burnedArray: BurnedArray[];
+    setLoginArray: React.Dispatch<React.SetStateAction<LoginType>>;
+    isLogged: boolean;
+    setIsLoginOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isLoginOpen: boolean;
 }
 
 export type ConsumedItems = {
@@ -37,3 +42,8 @@ export type ConsumedItems = {
 };
 
 export type ConsumedBoxProps = ConsumedItems[];
+
+export type LoginType = {
+    username: string;
+    password: string;
+};

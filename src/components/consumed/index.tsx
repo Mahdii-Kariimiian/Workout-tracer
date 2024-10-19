@@ -11,6 +11,7 @@ const index = () => {
     const [proteinSum, setProteinSum] = useState<number>(0);
     const [carbsSum, setCarbsSum] = useState<number>(0);
     const [fatSum, setFatSum] = useState<number>(0);
+    const [waterSum, setWaterSum] = useState<number>(0);
 
     useEffect(() => {
         if (consumedArray && consumedArray.length > 0) {
@@ -26,10 +27,15 @@ const index = () => {
                 (acc, item) => acc + item.fat,
                 0
             );
+            const totalWater = consumedArray.reduce(
+                (acc, item) => acc + item.water,
+                0
+            );
 
             setProteinSum(totalProtein);
             setCarbsSum(totalCarbs);
             setFatSum(totalFat);
+            setWaterSum(totalWater);
         }
     }, [consumedArray]);
 
@@ -37,11 +43,11 @@ const index = () => {
         { title: "Protein", quantity: proteinSum, icon: <TbMeat /> },
         { title: "Carbs", quantity: carbsSum, icon: <GiSlicedBread /> },
         { title: "Fat", quantity: fatSum, icon: <GiFat /> },
-        { title: "Water", quantity: 15 / 4, icon: <IoIosWater /> },
+        { title: "Water", quantity: waterSum, icon: <IoIosWater /> },
     ];
 
     return (
-        <div className="">
+        <div>
             <ConsumedBox consumedInfo={consumedInfo} />
         </div>
     );

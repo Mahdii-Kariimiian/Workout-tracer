@@ -9,24 +9,32 @@ const InsertMeal = () => {
     const [carbs, setCarbs] = useState<number>(0);
     const [protein, setProtein] = useState<number>(0);
     const [fat, setFat] = useState<number>(0);
+    const [water, setWater] = useState<number>(0);
 
-    const handleClick = (e) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();
         setIsModal?.(false);
         const sum = protein + fat + carbs;
         setConsumedArray?.((prev) => [
             ...prev,
-            { name: name, carbs: carbs, protein: protein, fat: fat, sum: sum },
+            {
+                name: name,
+                carbs: carbs,
+                protein: protein,
+                fat: fat,
+                sum: sum,
+                water: water,
+            },
         ]);
     };
     return (
-        <div className="p-10 bg-blue-500">
-            <form noValidate action="" className="flex flex-col">
+        <div className="p-10 bg-sky-500">
+            <form noValidate className="flex flex-col">
                 <label className="mb-1" htmlFor="meal">
                     Meal
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 p-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name as string}
                     type="text"
@@ -38,10 +46,10 @@ const InsertMeal = () => {
                     Protein
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 p-1"
                     required
                     onChange={(e) => setProtein(parseFloat(e.target.value))}
-                    value={protein as number}
+                    value={protein}
                     type="number"
                     name="protein"
                     id="protein"
@@ -51,9 +59,9 @@ const InsertMeal = () => {
                     Carbs
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 p-1"
                     onChange={(e) => setCarbs(parseFloat(e.target.value))}
-                    value={carbs as number}
+                    value={carbs}
                     type="number"
                     name="carbs"
                     id="carbs"
@@ -63,14 +71,24 @@ const InsertMeal = () => {
                 <input
                     className="mb-7"
                     onChange={(e) => setFat(parseFloat(e.target.value))}
-                    value={fat as number}
+                    value={fat}
                     type="number"
                     name="fat"
                     id="fat"
                     placeholder="fat"
                 />
+                <label htmlFor="water">Water</label>
+                <input
+                    className="mb-7"
+                    onChange={(e) => setWater(parseFloat(e.target.value))}
+                    value={water}
+                    type="number"
+                    name="water"
+                    id="water"
+                    placeholder="water"
+                />
                 <button
-                    className="bg-sky-950 text-white px-3 py-1"
+                    className="bg-sky-950 text-white px-3 py-1 rounded-sm"
                     onClick={(e) => handleClick(e)}
                 >
                     submit

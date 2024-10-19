@@ -13,8 +13,8 @@ const InsertExercise = () => {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setIsModalExercise?.(false);
-        setBurnedArray?.((prev) => [
+        setIsModalExercise(false);
+        setBurnedArray((prev) => [
             ...prev,
             {
                 name: name,
@@ -33,7 +33,7 @@ const InsertExercise = () => {
                     Exercise
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 text-black p-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     type="text"
@@ -45,7 +45,7 @@ const InsertExercise = () => {
                     Heart Rate
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 text-black p-1"
                     required
                     onChange={(e) => setHeartRate(parseFloat(e.target.value))}
                     value={heartRate}
@@ -58,7 +58,7 @@ const InsertExercise = () => {
                     CaloriesBurned
                 </label>
                 <input
-                    className="mb-3"
+                    className="mb-3 text-black p-1"
                     onChange={(e) =>
                         setCaloriesBurned(parseFloat(e.target.value))
                     }
@@ -70,7 +70,7 @@ const InsertExercise = () => {
                 />
                 <label htmlFor="duration">Duration</label>
                 <input
-                    className="mb-7"
+                    className="mb-7 text-black p-1"
                     onChange={(e) => setDuration(parseFloat(e.target.value))}
                     value={duration}
                     type="number"
@@ -80,7 +80,7 @@ const InsertExercise = () => {
                 />
                 <label htmlFor="distance">Distance</label>
                 <input
-                    className="mb-7"
+                    className="mb-7 text-black p-1"
                     onChange={(e) => setDistance(parseFloat(e.target.value))}
                     value={distance}
                     type="number"
