@@ -28,25 +28,25 @@ const InsertMeal = () => {
         ]);
     };
     return (
-        <div className="p-10 bg-sky-500">
+        <div className="p-10 bg-sky-700 rounded-lg font-josefin text-white">
             <form noValidate className="flex flex-col">
                 <label className="mb-1" htmlFor="meal">
                     Meal
                 </label>
                 <input
-                    className="mb-3 p-1"
+                    className="mb-3 text-black p-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name as string}
                     type="text"
                     name="meal"
                     id="meal"
-                    placeholder="meal"
+                    placeholder="Enter your meal"
                 />
                 <label className="mb-1" htmlFor="protein">
                     Protein
                 </label>
                 <input
-                    className="mb-3 p-1"
+                    className="mb-3 text-black p-1"
                     required
                     onChange={(e) => setProtein(parseFloat(e.target.value))}
                     value={protein}
@@ -59,7 +59,7 @@ const InsertMeal = () => {
                     Carbs
                 </label>
                 <input
-                    className="mb-3 p-1"
+                    className="mb-3 text-black p-1"
                     onChange={(e) => setCarbs(parseFloat(e.target.value))}
                     value={carbs}
                     type="number"
@@ -69,7 +69,7 @@ const InsertMeal = () => {
                 />
                 <label htmlFor="fat">Fat</label>
                 <input
-                    className="mb-7"
+                    className="mb-3 text-black p-1"
                     onChange={(e) => setFat(parseFloat(e.target.value))}
                     value={fat}
                     type="number"
@@ -79,7 +79,7 @@ const InsertMeal = () => {
                 />
                 <label htmlFor="water">Water</label>
                 <input
-                    className="mb-7"
+                    className="mb-7 p-1 text-black"
                     onChange={(e) => setWater(parseFloat(e.target.value))}
                     value={water}
                     type="number"

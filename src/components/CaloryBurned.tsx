@@ -18,7 +18,7 @@ const CaloryBurned = () => {
     }, [burnedArray]);
 
     return (
-        <div className="bg-gray-200 text-white h-full flex flex-col">
+        <div className="bg-gray-200 text-white h-full flex flex-col max-sm:flex-row">
             <div className="flex flex-1 justify-between items-center bg-sky-950 p-3">
                 <div className="space-y-2 ">
                     <p className="text-gray-400 font-agdasima text-xl">

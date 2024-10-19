@@ -12,9 +12,9 @@ const ExerciseBox = () => {
     } = useContext(Context);
 
     return (
-        <div className="bg-gray-200 px-3 pt-10 text-white h-full flex flex-col">
+        <div className="bg-gray-200 px-3 pt-10 text-white h-full flex flex-col pb-2">
             <div className="flex justify-between mb-2">
-                <div className="mb-2 text-2xl font-josefin text-sky-950 flex gap-2">
+                <div className="pb-2 text-2xl font-josefin text-sky-950 flex gap-2">
                     <GrYoga /> <h1>Exercises</h1>
                 </div>
                 <button
@@ -26,7 +26,7 @@ const ExerciseBox = () => {
                         isLogged
                             ? "bg-sky-950"
                             : "bg-gray-400 hover:cursor-not-allowed"
-                    } text-white px-3 py-1 rounded-sm uppercase`}
+                    } text-white px-3 py-1 rounded-sm uppercase whitespace-nowrap`}
                     disabled={!isLogged}
                 >
                     Add New Exercise

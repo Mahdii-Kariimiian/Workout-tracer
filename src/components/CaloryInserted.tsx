@@ -9,13 +9,14 @@ const CaloryInserted = () => {
         useContext(Context);
 
     return (
-        <div className="p-3 space-y-2 bg-gray-200 h-full flex flex-col">
+        <div className="p-3 space-y-2 max-sm:pt-10 bg-gray-200 h-full flex flex-col ">
             <div className="flex justify-between gap-5">
-                <div className="mb-2 flex gap-2 text-2xl font-josefin text-sky-950">
+                <div className="pb-2 flex gap-2 text-2xl font-josefin text-sky-950">
                     <FaBowlFood />
                     <h1>Meals</h1>
                 </div>
                 <button
+                    disabled={!isLogged}
                     className={`${
                         isLogged
                             ? "bg-sky-950"

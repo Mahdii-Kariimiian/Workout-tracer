@@ -21,7 +21,7 @@ const Login = () => {
     };
 
     return (
-        <div className="p-10 bg-sky-500 text-white">
+        <div className="p-10 bg-sky-700 rounded-lg font-josefin text-white">
             <form noValidate className="flex flex-col">
                 <label htmlFor="username" className="mb-1">
                     Username

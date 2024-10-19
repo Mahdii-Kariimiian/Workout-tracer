@@ -27,7 +27,7 @@ const InsertExercise = () => {
     };
 
     return (
-        <div className="p-10 bg-blue-500">
+        <div className="p-10 bg-sky-700 rounded-lg font-josefin">
             <form noValidate action="" className="flex flex-col">
                 <label className="mb-1" htmlFor="exercise">
                     Exercise
@@ -70,7 +70,7 @@ const InsertExercise = () => {
                 />
                 <label htmlFor="duration">Duration</label>
                 <input
-                    className="mb-7 text-black p-1"
+                    className="mb-3 text-black p-1"
                     onChange={(e) => setDuration(parseFloat(e.target.value))}
                     value={duration}
                     type="number"

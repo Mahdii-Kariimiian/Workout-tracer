@@ -95,29 +95,29 @@ function App() {
                 isLoginOpen,
             }}
         >
-            <div className="flex">
+            <div className="sm:flex">
                 <Sidebar />
                 <div className="lg:grid lg:grid-cols-12 lg:grid-rows-3 h-screen">
-                    <div className="lg:col-span-4">
+                    <div className="lg:col-span-4 order-1">
                         <MainInfo />
                     </div>
-                    <div className="lg:col-span-4">
+                    <div className="lg:col-span-4 order-2">
                         <Exercise />
                     </div>
-                    <div className="lg:col-span-4 row-span-2">
+                    <div className="lg:col-span-4 row-span-2 order-3">
                         <ExerciseBox />
                     </div>
-                    <div className="lg:col-span-4">
-                        <Consumed />
+                    <div className="lg:col-span-4 order-7">
+                        <CaloryBurned />
                     </div>
-                    <div className="lg:col-span-4 row-span-2">
-                        <BodyExercises />
-                    </div>
-                    <div className="lg:col-span-4">
+                    <div className="lg:col-span-4 order-6">
                         <CaloryInserted />
                     </div>
-                    <div className="lg:col-span-4">
-                        <CaloryBurned />
+                    <div className="lg:col-span-4 order-4">
+                        <Consumed />
+                    </div>
+                    <div className="lg:col-span-4 row-span-2 order-5">
+                        <BodyExercises />
                     </div>
                 </div>
             </div>
