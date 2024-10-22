@@ -24,7 +24,7 @@ const Title = () => {
     }, [consumedArray, burnedArray]);
 
     return (
-        <div className="bg-gradientSecondary max-lg:w-screen text-lightText p-10 h-full">
+        <div className="bg-gradientPrimary max-lg:w-screen text-lightText p-10 h-full">
             <div className="flex gap-2 mb-12 justify-start items-start">
                 <HiCalendarDays className="w-12 h-12 -translate-y-2" />
                 <h2 className="text-3xl font-josefin whitespace-nowrap">

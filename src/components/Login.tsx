@@ -51,7 +51,7 @@ const Login = () => {
 
                 <button
                     onClick={(e) => handleClick(e)}
-                    className="bg-primary text-lightText px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
+                    className="bg-primary text-lightText px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in uppercase"
                 >
                     Submit
                 </button>
