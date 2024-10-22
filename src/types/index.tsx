@@ -47,3 +47,8 @@ export type LoginType = {
     username: string;
     password: string;
 };
+
+export type useClickOutsideProps = {
+    ref: React.RefObject<HTMLElement>;
+    setState: React.Dispatch<React.SetStateAction<boolean>>;
+};

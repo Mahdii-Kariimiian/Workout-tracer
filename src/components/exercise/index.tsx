@@ -5,7 +5,7 @@ import { FaSpoon } from "react-icons/fa6";
 import { FaFireAlt } from "react-icons/fa";
 
 const Title = () => {
-    const { consumedArray, burnedArray, isLogged } = useContext(Context);
+    const { consumedArray, burnedArray } = useContext(Context);
     const [allConsumed, setAllConsumed] = useState(0);
     const [allBurned, setAllBurned] = useState(0);
 
@@ -24,10 +24,10 @@ const Title = () => {
     }, [consumedArray, burnedArray]);
 
     return (
-        <div className="bg-sky-900 max-lg:w-screen text-white py-10 px-3 h-full">
+        <div className="bg-gradientSecondary max-lg:w-screen text-lightText p-10 h-full">
             <div className="flex gap-2 mb-12 justify-start items-start">
                 <HiCalendarDays className="w-12 h-12 -translate-y-2" />
-                <h2 className="text-4xl font-josefin whitespace-nowrap">
+                <h2 className="text-3xl font-josefin whitespace-nowrap">
                     Your Daily Activity
                 </h2>
             </div>
@@ -37,11 +37,11 @@ const Title = () => {
                         <FaSpoon className="w-5 h-5 p-1" />
                     </div>
                     <div className="space-y-1">
-                        <h2 className="text-gray-300 text-lg font-agdasima whitespace-nowrap">
+                        <h2 className="text-lightText text-lg font-agdasima whitespace-nowrap">
                             All Calories Consumed
                         </h2>
                         <p className="text-2xl font-josefin">
-                            {isLogged ? allConsumed : "-"} Kcal
+                            {allConsumed} Kcal
                         </p>
                     </div>
                 </div>
@@ -50,11 +50,11 @@ const Title = () => {
                         <FaFireAlt className="w-5 h-5" />
                     </div>
                     <div className="space-y-1">
-                        <h2 className="text-gray-300 text-lg font-agdasima whitespace-nowrap">
+                        <h2 className="text-lightText text-lg font-agdasima whitespace-nowrap">
                             All Calories Burned
                         </h2>
                         <p className="text-2xl font-josefin">
-                            {isLogged ? allBurned : "-"} Kcal
+                            {allBurned} Kcal
                         </p>
                     </div>
                 </div>

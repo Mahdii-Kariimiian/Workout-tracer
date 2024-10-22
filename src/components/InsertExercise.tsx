@@ -27,13 +27,13 @@ const InsertExercise = () => {
     };
 
     return (
-        <div className="p-10 bg-sky-700 rounded-lg font-josefin">
+        <div className="p-10 bg-bgLight text-darkText rounded-lg font-josefin">
             <form noValidate action="" className="flex flex-col">
                 <label className="mb-1" htmlFor="exercise">
                     Exercise
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     type="text"
@@ -45,7 +45,7 @@ const InsertExercise = () => {
                     Heart Rate
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     required
                     onChange={(e) => setHeartRate(parseFloat(e.target.value))}
                     value={heartRate}
@@ -58,7 +58,7 @@ const InsertExercise = () => {
                     CaloriesBurned
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) =>
                         setCaloriesBurned(parseFloat(e.target.value))
                     }
@@ -70,7 +70,7 @@ const InsertExercise = () => {
                 />
                 <label htmlFor="duration">Duration</label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) => setDuration(parseFloat(e.target.value))}
                     value={duration}
                     type="number"
@@ -80,7 +80,7 @@ const InsertExercise = () => {
                 />
                 <label htmlFor="distance">Distance</label>
                 <input
-                    className="mb-7 text-black p-1"
+                    className="mb-7 text-darkText p-1"
                     onChange={(e) => setDistance(parseFloat(e.target.value))}
                     value={distance}
                     type="number"
@@ -89,7 +89,7 @@ const InsertExercise = () => {
                     placeholder="distance"
                 />
                 <button
-                    className="bg-sky-950 text-white px-3 py-1"
+                    className="bg-primary text-lightText px-3 py-2 hover:bg-bgHover hover:transition-all hover:ease-in"
                     onClick={(e) => handleClick(e)}
                 >
                     submit

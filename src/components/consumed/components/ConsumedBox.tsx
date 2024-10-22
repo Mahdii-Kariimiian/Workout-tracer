@@ -1,28 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ConsumedBoxProps } from "../../../types";
-import { Context } from "../../../App";
 
 const ConsumedBox: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({
     consumedInfo,
 }) => {
-    const { isLogged } = useContext(Context);
     return (
-        <div className="grid grid-cols-2 border border-sky-800 text-white">
+        <div className="grid grid-cols-2 text-lightText">
             {consumedInfo.map((item, index) => (
                 <div
                     key={index}
-                    className={`p-3 ${
-                        index === 0 || index === 3 ? "bg-sky-900" : "bg-sky-950"
+                    className={`px-10 py-7 flex justify-between items-center ${
+                        index === 0 || index === 3
+                            ? "bg-gradientSecondary"
+                            : "bg-gradientPrimary"
                     }`}
                 >
-                    <p className="text-4xl flex justify-end">{item.icon}</p>
-                    <p className="text-gray-400 text-lg font-agdasima">
-                        {item.title}
-                    </p>
-                    <p className="font-josefin text-xl">
-                        {isLogged ? item.quantity : "-"}{" "}
-                        {item.title === "Water" ? "L" : "gr"}
-                    </p>
+                    <div className="space-y-2">
+                        <p className="text-lightText text-lg font-agdasima">
+                            {item.title}
+                        </p>
+                        <p className="font-josefin text-xl">
+                            {item.quantity}
+                            {item.title === "Water" ? "lit" : "gr"}
+                        </p>
+                    </div>
+                    <p className="text-3xl">{item.icon}</p>
                 </div>
             ))}
         </div>

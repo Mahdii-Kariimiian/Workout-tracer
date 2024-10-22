@@ -21,13 +21,13 @@ const Login = () => {
     };
 
     return (
-        <div className="p-10 bg-sky-700 rounded-lg font-josefin text-white">
+        <div className="p-10 bg-bgLight rounded-lg font-josefin text-darkText">
             <form noValidate className="flex flex-col">
                 <label htmlFor="username" className="mb-1">
                     Username
                 </label>
                 <input
-                    className="mb-3 p-1 text-black"
+                    className="mb-3 p-1 text-darkText"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     type="text"
@@ -40,7 +40,7 @@ const Login = () => {
                     Password
                 </label>
                 <input
-                    className="mb-7 p-1 text-black"
+                    className="mb-7 p-1 text-darkText"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="text"
@@ -51,7 +51,7 @@ const Login = () => {
 
                 <button
                     onClick={(e) => handleClick(e)}
-                    className="bg-sky-950 text-white px-3 py-1 rounded-sm"
+                    className="bg-primary text-lightText px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
                 >
                     Submit
                 </button>

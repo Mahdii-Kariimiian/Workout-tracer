@@ -28,13 +28,13 @@ const InsertMeal = () => {
         ]);
     };
     return (
-        <div className="p-10 bg-sky-700 rounded-lg font-josefin text-white">
+        <div className="z-10 p-10 bg-bgLight rounded-lg font-josefin text-darkText">
             <form noValidate className="flex flex-col">
                 <label className="mb-1" htmlFor="meal">
                     Meal
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name as string}
                     type="text"
@@ -46,7 +46,7 @@ const InsertMeal = () => {
                     Protein
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     required
                     onChange={(e) => setProtein(parseFloat(e.target.value))}
                     value={protein}
@@ -59,7 +59,7 @@ const InsertMeal = () => {
                     Carbs
                 </label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) => setCarbs(parseFloat(e.target.value))}
                     value={carbs}
                     type="number"
@@ -69,7 +69,7 @@ const InsertMeal = () => {
                 />
                 <label htmlFor="fat">Fat</label>
                 <input
-                    className="mb-3 text-black p-1"
+                    className="mb-3 text-darkText p-1"
                     onChange={(e) => setFat(parseFloat(e.target.value))}
                     value={fat}
                     type="number"
@@ -79,7 +79,7 @@ const InsertMeal = () => {
                 />
                 <label htmlFor="water">Water</label>
                 <input
-                    className="mb-7 p-1 text-black"
+                    className="mb-7 p-1 text-darkText"
                     onChange={(e) => setWater(parseFloat(e.target.value))}
                     value={water}
                     type="number"
@@ -88,7 +88,7 @@ const InsertMeal = () => {
                     placeholder="water"
                 />
                 <button
-                    className="bg-sky-950 text-white px-3 py-1 rounded-sm"
+                    className="bg-primary text-white px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
                     onClick={(e) => handleClick(e)}
                 >
                     submit
