@@ -31,7 +31,7 @@ export const Context = createContext<AppContextType>({
 
 function App() {
     // States for Context //
-    const [isLogged, setIsLogged] = useState<boolean>(true);
+    const [isLogged, setIsLogged] = useState<boolean>(false);
     const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isModalExercise, setIsModalExercise] = useState<boolean>(false);

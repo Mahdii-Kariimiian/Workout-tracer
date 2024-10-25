@@ -39,7 +39,10 @@ const CaloryInserted = () => {
                             key={index}
                             className="border border-darkText rounded-lg px-5 py-3 mb-2"
                         >
-                            <p className="text-lg font-josefin">{meal.name}</p>
+                            <div className="flex gap-3 items-center">
+                                <p className="text-lg font-josefin">{meal.name}</p>
+                                <p className="text-sm font-josefin">{meal.date}</p>
+                            </div>
                             <div className="flex gap-5 justify-between text-xl font-agdasima">
                                 <div>
                                     <p>Carbs</p>

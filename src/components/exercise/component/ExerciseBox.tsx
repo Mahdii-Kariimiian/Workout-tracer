@@ -32,7 +32,10 @@ const ExerciseBox = () => {
                         key={index}
                         className="border border-primary px-5 py-3 mb-2 rounded-lg"
                     >
-                        <h2 className="text-lg font-josefin">{item.name}</h2>
+                        <div className="flex gap-3 items-center">
+                            <p className="text-lg font-josefin">{item.name}</p>
+                            <p className="text-sm font-josefin">{item.date}</p>
+                        </div>
                         <div className="flex gap-5 justify-between text-lg font-agdasima">
                             <div>
                                 <p>Calories</p>

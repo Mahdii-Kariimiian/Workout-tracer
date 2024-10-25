@@ -10,6 +10,21 @@ const InsertExercise = () => {
     const [caloriesBurned, setCaloriesBurned] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const [distance, setDistance] = useState<number>(0);
+    const [date, setDate] = useState<string>(() => {
+        const submittedTime = new Date();
+        const day = submittedTime.getDate();
+        const month = submittedTime.getMonth() + 1;
+        const year = submittedTime.getUTCFullYear();
+
+        const formattedDate =
+            (day < 10 ? "0" + day : day) +
+            "/" +
+            (month < 10 ? "0" + month : month) +
+            "/" +
+            year.toString().substring(2);
+
+        return formattedDate;
+    });
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -22,6 +37,7 @@ const InsertExercise = () => {
                 caloriesBurned: caloriesBurned,
                 duration: duration,
                 distance: distance,
+                date: date,
             },
         ]);
     };

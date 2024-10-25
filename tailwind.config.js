@@ -13,11 +13,11 @@ export default {
                 darkText: "#012622",
                 lightText: "#ece5f0",
                 bgLight: "#ece5f0",
-                bgHover: "rgba(0,102,94,1)"
+                bgHover: "rgba(0,102,94,1)",
             },
             backgroundImage: {
                 gradientSecondary:
-                    "linear-gradient(59deg, rgba(255,141,0,1) 0%, rgba(211,124,18,1) 100%)",
+                    "linear-gradient(301deg, rgba(211,124,18,1) 0%, rgba(255,175,0,1) 100%);",
                 gradientPrimary:
                     " linear-gradient(59deg, rgba(0,102,94,1) 0%, rgba(0,59,54,1) 100%);",
             },

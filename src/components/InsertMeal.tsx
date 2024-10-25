@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../App";
 import { AppContextType } from "../types";
 
@@ -10,6 +10,21 @@ const InsertMeal = () => {
     const [protein, setProtein] = useState<number>(0);
     const [fat, setFat] = useState<number>(0);
     const [water, setWater] = useState<number>(0);
+    const [date, setDate] = useState<string>(() => {
+        const submittedTime = new Date();
+        const day = submittedTime.getDate();
+        const month = submittedTime.getMonth() + 1;
+        const year = submittedTime.getUTCFullYear();
+
+        const formattedDate =
+            (day < 10 ? "0" + day : day) +
+            "/" +
+            (month < 10 ? "0" + month : month) +
+            "/" +
+            year.toString().substring(2);
+
+        return formattedDate;
+    });
 
     const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();
@@ -24,6 +39,7 @@ const InsertMeal = () => {
                 fat: fat,
                 sum: sum,
                 water: water,
+                date: date,
             },
         ]);
     };

@@ -5,6 +5,7 @@ export type ConsumedArray = {
     protein: number;
     sum: number;
     water: number;
+    date: string;
 };
 
 export type BurnedArray = {
@@ -13,6 +14,7 @@ export type BurnedArray = {
     caloriesBurned: number;
     duration: number;
     distance: number;
+    date: string;
 };
 
 export type InsertMealTypes = {
