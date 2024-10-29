@@ -5,7 +5,7 @@ export type ConsumedArray = {
     protein: number;
     sum: number;
     water: number;
-    date: string;
+    date?: string;
 };
 
 export type BurnedArray = {
@@ -50,7 +50,7 @@ export type LoginType = {
     password: string;
 };
 
-export type useClickOutsideProps = {
+export type UseClickOutsideProps = {
     ref: React.RefObject<HTMLElement>;
     setState: React.Dispatch<React.SetStateAction<boolean>>;
 };

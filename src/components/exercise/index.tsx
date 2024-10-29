@@ -27,7 +27,7 @@ const Title = () => {
         <div className="bg-gradientPrimary max-lg:w-screen text-lightText p-10 h-full">
             <div className="flex gap-2 mb-12 justify-start items-start">
                 <HiCalendarDays className="w-12 h-12 -translate-y-2" />
-                <h2 className="text-3xl font-josefin whitespace-nowrap">
+                <h2 className="text-xl font-josefin whitespace-nowrap">
                     Your Daily Activity
                 </h2>
             </div>

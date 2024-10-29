@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useClickOutsideProps } from "../../types";
+import { UseClickOutsideProps } from "../../types";
 
-const useClickOutside = ({ ref, setState }: useClickOutsideProps) => {
+const useClickOutside = ({ ref, setState }: UseClickOutsideProps) => {
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (ref.current && !ref.current.contains(e.target as Node)) {

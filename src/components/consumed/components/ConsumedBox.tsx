@@ -5,11 +5,11 @@ const ConsumedBox: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({
     consumedInfo,
 }) => {
     return (
-        <div className="grid grid-cols-2 text-lightText">
+        <div className="grid grid-cols-2 text-lightText overflow-hidden">
             {consumedInfo.map((item, index) => (
                 <div
                     key={index}
-                    className={`px-10 py-7 flex justify-between items-center ${
+                    className={`px-10 py-[27.2px] flex justify-between items-center  ${
                         index === 0 || index === 3
                             ? "bg-gradientSecondary"
                             : "bg-gradientPrimary"

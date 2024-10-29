@@ -1,69 +1,102 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../App";
-import { AppContextType } from "../types";
+import { AppContextType, ConsumedArray } from "../types";
 
-const InsertMeal = () => {
+const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
+    // Context
     const { setIsModal, setConsumedArray } =
         useContext<AppContextType>(Context);
-    const [name, setName] = useState<string>("");
-    const [carbs, setCarbs] = useState<number>(0);
-    const [protein, setProtein] = useState<number>(0);
-    const [fat, setFat] = useState<number>(0);
-    const [water, setWater] = useState<number>(0);
-    const [date, setDate] = useState<string>(() => {
-        const submittedTime = new Date();
-        const day = submittedTime.getDate();
-        const month = submittedTime.getMonth() + 1;
-        const year = submittedTime.getUTCFullYear();
-
-        const formattedDate =
-            (day < 10 ? "0" + day : day) +
-            "/" +
-            (month < 10 ? "0" + month : month) +
-            "/" +
-            year.toString().substring(2);
-
-        return formattedDate;
+    // States
+    const [name, setName] = useState<string>(selectedItem?.name || "");
+    const [carbs, setCarbs] = useState<number>(selectedItem?.carbs || 0);
+    const [protein, setProtein] = useState<number>(selectedItem?.protein || 0);
+    const [fat, setFat] = useState<number>(selectedItem?.fat || 0);
+    const [water, setWater] = useState<number>(selectedItem?.water || 0);
+    // For checking Empty Input
+    const [isEmptyInput, setIsEmptyInput] = useState<boolean>(() => {
+        return selectedItem ? false : true;
     });
+    // Put values for update mode
+    useEffect(() => {
+        if (selectedItem) {
+            setName(selectedItem.name);
+            setCarbs(selectedItem.carbs);
+            setProtein(selectedItem.protein);
+            setFat(selectedItem.fat);
+            setWater(selectedItem.water);
+        }
+    }, [selectedItem]);
 
-    const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        setIsModal?.(false);
+        setIsModal(false);
+
         const sum = protein + fat + carbs;
-        setConsumedArray?.((prev) => [
-            ...prev,
-            {
-                name: name,
-                carbs: carbs,
-                protein: protein,
-                fat: fat,
-                sum: sum,
-                water: water,
-                date: date,
-            },
-        ]);
+
+        if (selectedItem) {
+            setConsumedArray?.((prev) =>
+                prev.map((item) =>
+                    item === selectedItem
+                        ? {
+                              ...item,
+                              name,
+                              carbs,
+                              protein,
+                              fat,
+                              water,
+                              sum,
+                          }
+                        : item
+                )
+            );
+        } else {
+            setConsumedArray?.((prev) => [
+                ...prev,
+                {
+                    name,
+                    carbs,
+                    protein,
+                    fat,
+                    water,
+                    sum,
+                    date: new Date().toLocaleDateString(),
+                },
+            ]);
+        }
     };
+
     return (
         <div className="z-10 p-10 bg-bgLight rounded-lg font-josefin text-darkText">
             <form noValidate className="flex flex-col">
-                <label className="mb-1" htmlFor="meal">
-                    Meal
-                </label>
+                <div className="flex gap-4 justify-between">
+                    <label className="mb-1" htmlFor="meal">
+                        Meal
+                    </label>
+                    {isEmptyInput && (
+                        <p className="text-sm text-red-600">
+                            Please insert the name
+                        </p>
+                    )}
+                </div>
                 <input
                     className="mb-3 text-darkText p-1"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name as string}
+                    onChange={(e) => {
+                        setIsEmptyInput(!e.target.value.trim());
+                        setName(e.target.value);
+                    }}
+                    value={name}
                     type="text"
                     name="meal"
                     id="meal"
                     placeholder="Enter your meal"
+                    required
                 />
+
                 <label className="mb-1" htmlFor="protein">
                     Protein
                 </label>
                 <input
                     className="mb-3 text-darkText p-1"
-                    required
                     onChange={(e) => setProtein(parseFloat(e.target.value))}
                     value={protein}
                     type="number"
@@ -105,9 +138,12 @@ const InsertMeal = () => {
                 />
                 <button
                     className="bg-primary text-white px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
-                    onClick={(e) => handleClick(e)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        !isEmptyInput && handleSubmit(e);
+                    }}
                 >
-                    submit
+                    {selectedItem ? "Update Meal" : "Add Meal"}
                 </button>
             </form>
         </div>

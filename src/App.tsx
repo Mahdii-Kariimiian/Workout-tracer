@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 //Components
 import MainInfo from "./components/MainInfo";
 import Sidebar from "./components/Sidebar";
-import Exercise from "./components/exercise";
 import Consumed from "./components/consumed";
 import BodyExercises from "./components/BodyExercises";
 import CaloryInserted from "./components/CaloryInserted";
@@ -31,7 +30,7 @@ export const Context = createContext<AppContextType>({
 
 function App() {
     // States for Context //
-    const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [isLogged, setIsLogged] = useState<boolean>(true);
     const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isModalExercise, setIsModalExercise] = useState<boolean>(false);
@@ -101,25 +100,27 @@ function App() {
                 {isLogged ? (
                     <div>
                         <div className="lg:grid lg:grid-cols-12 lg:grid-rows-3 h-screen">
-                            <div className="lg:col-span-4 order-1">
+                            <div className="lg:col-span-4">
                                 <MainInfo />
                             </div>
-                            <div className="lg:col-span-4 order-2">
-                                <Exercise />
-                            </div>
-                            <div className="lg:col-span-4 row-span-2 order-3">
-                                <ExerciseBox />
-                            </div>
-                            <div className="lg:col-span-4 order-7">
-                                <CaloryBurned />
-                            </div>
-                            <div className="lg:col-span-4 order-6">
-                                <CaloryInserted />
-                            </div>
-                            <div className="lg:col-span-4 order-4">
+
+                            <div className="lg:col-span-4">
                                 <Consumed />
                             </div>
-                            <div className="lg:col-span-4 row-span-2 order-5">
+
+                            <div className="lg:col-span-4 row-span-2">
+                                <ExerciseBox />
+                            </div>
+
+                            <div className="lg:col-span-4 row-span-2 ">
+                                <CaloryInserted />
+                            </div>
+
+                            <div className="lg:col-span-4 lg:order-last ">
+                                <CaloryBurned />
+                            </div>
+
+                            <div className="lg:col-span-4 row-span-2">
                                 <BodyExercises />
                             </div>
                         </div>
