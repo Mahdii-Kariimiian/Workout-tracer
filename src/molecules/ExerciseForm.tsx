@@ -1,11 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import { Context } from "../App";
 import { AppContextType, BurnedArray } from "../types";
+import FormInputCard from "../atoms/FormInputCard";
 
 const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
-    console.log(selectedItem);
+    // Context
     const { setBurnedArray, setIsModalExercise } =
         useContext<AppContextType>(Context);
+    // States
     const [name, setName] = useState<string>("");
     const [heartRate, setHeartRate] = useState<number>(0);
     const [caloriesBurned, setCaloriesBurned] = useState<number>(0);
@@ -14,7 +16,7 @@ const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
     const [isEmptyInput, setIsEmptyInput] = useState<boolean>(() => {
         return selectedItem ? false : true;
     });
-
+    // Put values in Inputs on Edit mode
     useEffect(() => {
         if (selectedItem) {
             setName(selectedItem.name);
@@ -25,7 +27,7 @@ const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
             selectedItem.date = new Date().toDateString();
         }
     }, [selectedItem]);
-
+    // Handle Click in Add and Edit Mode
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setIsModalExercise(false);
@@ -65,6 +67,17 @@ const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
             ]);
         }
     };
+    // Arrays For InputCard Component
+    const inputArrays = [
+        { label: "heartRate", state: heartRate, setState: setHeartRate },
+        {
+            label: "caloriesBurned",
+            state: caloriesBurned,
+            setState: setCaloriesBurned,
+        },
+        { label: "duration", state: duration, setState: setDuration },
+        { label: "distance", state: distance, setState: setDistance },
+    ];
 
     return (
         <div className="p-10 bg-bgLight text-darkText rounded-lg font-josefin">
@@ -91,7 +104,17 @@ const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
                     id="exercise"
                     placeholder="exercise"
                 />
-                <label className="mb-1" htmlFor="heartRate">
+                <FormInputCard props={inputArrays} />
+                <button
+                    className="bg-primary text-lightText px-3 py-2 hover:bg-bgHover hover:transition-all hover:ease-in"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        !isEmptyInput && handleClick(e);
+                    }}
+                >
+                    submit
+                </button>
+                {/* <label className="mb-1" htmlFor="heartRate">
                     Heart Rate
                 </label>
                 <input
@@ -137,16 +160,7 @@ const InsertExercise = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
                     name="distance"
                     id="distance"
                     placeholder="distance"
-                />
-                <button
-                    className="bg-primary text-lightText px-3 py-2 hover:bg-bgHover hover:transition-all hover:ease-in"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        !isEmptyInput && handleClick(e);
-                    }}
-                >
-                    submit
-                </button>
+                /> */}
             </form>
         </div>
     );

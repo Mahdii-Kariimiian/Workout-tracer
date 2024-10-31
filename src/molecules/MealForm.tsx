@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../App";
 import { AppContextType, ConsumedArray } from "../types";
+import FormInputCard from "../atoms/FormInputCard";
 
-const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
+const MealForm = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
     // Context
     const { setIsModal, setConsumedArray } =
         useContext<AppContextType>(Context);
@@ -26,6 +27,13 @@ const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
             setWater(selectedItem.water);
         }
     }, [selectedItem]);
+
+    const inputArrays = [
+        { label: "carbs", state: carbs, setState: setCarbs },
+        { label: "protein", state: protein, setState: setProtein },
+        { label: "fat", state: fat, setState: setFat },
+        { label: "water", state: water, setState: setWater },
+    ];
 
     const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
@@ -78,6 +86,7 @@ const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
                         </p>
                     )}
                 </div>
+
                 <input
                     className="mb-3 text-darkText p-1"
                     onChange={(e) => {
@@ -92,6 +101,18 @@ const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
                     required
                 />
 
+                <FormInputCard props={inputArrays}></FormInputCard>
+
+                <button
+                    className="bg-primary text-white px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        !isEmptyInput && handleSubmit(e);
+                    }}
+                >
+                    {selectedItem ? "Update Meal" : "Add Meal"}
+                </button>
+                {/*
                 <label className="mb-1" htmlFor="protein">
                     Protein
                 </label>
@@ -135,19 +156,10 @@ const InsertMeal = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
                     name="water"
                     id="water"
                     placeholder="water"
-                />
-                <button
-                    className="bg-primary text-white px-3 py-2 rounded-sm hover:bg-bgHover hover:transition-all hover:ease-in"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        !isEmptyInput && handleSubmit(e);
-                    }}
-                >
-                    {selectedItem ? "Update Meal" : "Add Meal"}
-                </button>
+                /> */}
             </form>
         </div>
     );
 };
 
-export default InsertMeal;
+export default MealForm;

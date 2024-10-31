@@ -1,12 +1,13 @@
 import { useContext, useRef, useState } from "react";
-import InsertMeal from "./InsertMeal";
+import InsertMeal from "./MealForm";
 import { Context } from "../App";
 import { ConsumedArray } from "../types";
-import { FaBowlFood } from "react-icons/fa6";
 import { CiSquareRemove } from "react-icons/ci";
-import useClickOutside from "../components/customHooks/useClickOutside";
+import useClickOutside from "../customHooks/useClickOutside";
+import NutrientDetails from "../atoms/NutrientDetails";
+import lunch from "../../public/icons/lunch-box.png";
 
-const CaloryInserted = () => {
+const NutrientTracker = () => {
     const {
         isModal,
         setIsModal,
@@ -35,8 +36,10 @@ const CaloryInserted = () => {
         <div className="p-10 max-sm:h-96 text-lightText h-full flex flex-col bg-gradientPrimary ">
             <div className="flex justify-between gap-5 items-end mb-5">
                 <div className="flex gap-2 text-2xl font-josefin">
-                    <FaBowlFood />
-                    <h1>Meals</h1>
+                    <div className="flex gap-2 items-baseline">
+                        <img className="w-9" src={lunch} alt="lunch" />
+                        <h1>Meals</h1>
+                    </div>
                 </div>
                 <button
                     className={
@@ -51,8 +54,15 @@ const CaloryInserted = () => {
                     Add New Meal
                 </button>
             </div>
+
             <div className="overflow-y-auto h-full overflow-x-hidden w-full pr-5">
                 {consumedArray.map((meal: ConsumedArray, index: number) => {
+                    const nutrientData = [
+                        { name: "Carbs", nutrient: meal.carbs, unit: "gr" },
+                        { name: "Fat", nutrient: meal.fat, unit: "gr" },
+                        { name: "Protein", nutrient: meal.protein, unit: "gr" },
+                        { name: "Sum", nutrient: meal.sum, unit: "gr" },
+                    ];
                     return (
                         <div
                             key={index}
@@ -76,7 +86,9 @@ const CaloryInserted = () => {
                                     <CiSquareRemove className="text-2xl " />
                                 </div>
                             </div>
-                            <div className="flex gap-5 justify-between text-xl font-agdasima">
+
+                            <NutrientDetails props={nutrientData} />
+                            {/*<div className="flex gap-5 justify-between text-xl font-agdasima">
                                 <div>
                                     <p>Carbs</p>
                                     <p className="font-josefin whitespace-nowrap">
@@ -101,7 +113,7 @@ const CaloryInserted = () => {
                                         {meal.sum} gr
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     );
                 })}
@@ -122,4 +134,4 @@ const CaloryInserted = () => {
     );
 };
 
-export default CaloryInserted;
+export default NutrientTracker;

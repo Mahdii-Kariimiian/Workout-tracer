@@ -40,8 +40,14 @@ export interface AppContextType {
 export type ConsumedItems = {
     title: string;
     quantity: number;
-    icon: React.ReactNode;
+    icon: string;
 };
+
+export type InputCardProps = {
+    label: string;
+    state: string | number;
+    setState: React.Dispatch<React.SetStateAction<number>>;
+}[];
 
 export type ConsumedBoxProps = ConsumedItems[];
 
@@ -54,3 +60,9 @@ export type UseClickOutsideProps = {
     ref: React.RefObject<HTMLElement>;
     setState: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type NutrientInfoProps = {
+    name: string;
+    unit: string;
+    nutrient: React.ReactNode;
+}[];

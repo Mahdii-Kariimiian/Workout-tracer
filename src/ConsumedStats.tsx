@@ -1,7 +1,7 @@
 import React from "react";
-import { ConsumedBoxProps } from "../../../types";
+import { ConsumedBoxProps } from "./types";
 
-const ConsumedBox: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({
+const ConsumedStats: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({
     consumedInfo,
 }) => {
     return (
@@ -31,4 +31,4 @@ const ConsumedBox: React.FC<{ consumedInfo: ConsumedBoxProps }> = ({
     );
 };
 
-export default ConsumedBox;
+export default ConsumedStats;

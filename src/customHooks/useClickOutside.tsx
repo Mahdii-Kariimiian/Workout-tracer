@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { UseClickOutsideProps } from "../../types";
+import { UseClickOutsideProps } from "../types";
 
 const useClickOutside = ({ ref, setState }: UseClickOutsideProps) => {
     useEffect(() => {

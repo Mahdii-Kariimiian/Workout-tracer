@@ -1,16 +1,16 @@
 import { createContext, useEffect, useState } from "react";
 //Components
-import MainInfo from "./components/MainInfo";
-import Sidebar from "./components/Sidebar";
-import Consumed from "./components/consumed";
-import BodyExercises from "./components/BodyExercises";
-import CaloryInserted from "./components/CaloryInserted";
-import CaloryBurned from "./components/CaloryBurned";
+import MainInfo from "./molecules/ActivityOverview";
+import Sidebar from "./molecules/Sidebar";
+import NutritionalSummary from "./molecules/NutritionalSummary";
+import BodyExercises from "./molecules/BodyExercises";
+import NutrientTracker from "./molecules/NutrientTracker";
+import ActivityStats from "./molecules/ActivitySummary";
 //Css Files
 import "./App.css";
 //Types
 import { ConsumedArray, AppContextType, BurnedArray, LoginType } from "./types";
-import ExerciseBox from "./components/exercise/component/ExerciseBox";
+import ExerciseBox from "./molecules/ExerciseTracker";
 
 //Context
 export const Context = createContext<AppContextType>({
@@ -105,7 +105,7 @@ function App() {
                             </div>
 
                             <div className="lg:col-span-4">
-                                <Consumed />
+                                <NutritionalSummary />
                             </div>
 
                             <div className="lg:col-span-4 row-span-2">
@@ -113,11 +113,11 @@ function App() {
                             </div>
 
                             <div className="lg:col-span-4 row-span-2 ">
-                                <CaloryInserted />
+                                <NutrientTracker />
                             </div>
 
                             <div className="lg:col-span-4 lg:order-last ">
-                                <CaloryBurned />
+                                <ActivityStats />
                             </div>
 
                             <div className="lg:col-span-4 row-span-2">

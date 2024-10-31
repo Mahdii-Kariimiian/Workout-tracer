@@ -1,12 +1,12 @@
 import { useContext, useRef, useState } from "react";
-import { Context } from "../../../App";
-import { GrYoga } from "react-icons/gr";
+import { Context } from "../App";
 import { CiSquareRemove } from "react-icons/ci";
-import InsertExercise from "../../InsertExercise";
-import useClickOutside from "../../customHooks/useClickOutside";
-import { BurnedArray } from "../../../types";
+import ExerciseForm from "./ExerciseForm";
+import useClickOutside from "../customHooks/useClickOutside";
+import { BurnedArray } from "../types";
+import exercise from "../../public/icons/exercise.png";
 
-const ExerciseBox = () => {
+const ExerciseTracker = () => {
     const {
         burnedArray,
         setIsModal,
@@ -34,8 +34,10 @@ const ExerciseBox = () => {
         <div className="bg-bgLight max-sm:h-96 px-10 py-7 text-darkText h-full flex flex-col pb-2">
             <div className="flex justify-between gap-5 items-end mb-5">
                 <div className="text-2xl font-josefin text-darkText flex gap-2">
-                    <GrYoga />
-                    <h1>Exercises</h1>
+                    <div className="flex items-baseline gap-2">
+                        <img className="w-9" src={exercise} alt="exercise" />
+                        <h1>Exercises</h1>
+                    </div>
                 </div>
                 <button
                     onClick={() => {
@@ -109,7 +111,7 @@ const ExerciseBox = () => {
                         ref={modalRef}
                         className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]"
                     >
-                        <InsertExercise selectedItem={selectedItem} />
+                        <ExerciseForm selectedItem={selectedItem} />
                     </div>
                 </div>
             )}
@@ -117,4 +119,4 @@ const ExerciseBox = () => {
     );
 };
 
-export default ExerciseBox;
+export default ExerciseTracker;

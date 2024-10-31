@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 // Custom hook
-import useClickOutside from "./customHooks/useClickOutside";
+import useClickOutside from "../customHooks/useClickOutside";
 //Components
 import Login from "./Login";
 // Context

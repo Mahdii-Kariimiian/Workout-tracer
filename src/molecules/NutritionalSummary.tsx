@@ -1,12 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import ConsumedBox from "./components/ConsumedBox";
+import NutrientInfoCard from "../atoms/NutrientInfoCard";
 import { TbMeat } from "react-icons/tb";
 import { GiFat } from "react-icons/gi";
 import { GiSlicedBread } from "react-icons/gi";
 import { IoIosWater } from "react-icons/io";
-import { Context } from "../../App";
-import { AppContextType, ConsumedBoxProps } from "../../types";
-const index = () => {
+import { Context } from "../App";
+import { AppContextType, ConsumedBoxProps } from "../types";
+import meat from "../../public/icons/meat.png";
+import lipid from "../../public/icons/lipid.png";
+import waterBottle from "../../public/icons/water-bottle.png";
+import food from "../../public/icons/food.png";
+
+const NutritionalSummary = () => {
     const { consumedArray } = useContext<AppContextType>(Context);
     const [proteinSum, setProteinSum] = useState<number>(0);
     const [carbsSum, setCarbsSum] = useState<number>(0);
@@ -40,17 +45,19 @@ const index = () => {
     }, [consumedArray]);
 
     const consumedInfo: ConsumedBoxProps = [
-        { title: "Protein", quantity: proteinSum, icon: <TbMeat /> },
-        { title: "Carbs", quantity: carbsSum, icon: <GiSlicedBread /> },
-        { title: "Fat", quantity: fatSum, icon: <GiFat /> },
-        { title: "Water", quantity: waterSum, icon: <IoIosWater /> },
+        { title: "Protein", quantity: proteinSum, icon: meat },
+        { title: "Carbs", quantity: carbsSum, icon: food },
+        { title: "Fat", quantity: fatSum, icon: lipid },
+        { title: "Water", quantity: waterSum, icon: waterBottle },
     ];
 
     return (
-        <div>
-            <ConsumedBox consumedInfo={consumedInfo} />
+        <div className="h-full">
+            <NutrientInfoCard props={consumedInfo}>
+                grid grid-cols-2 text-darkText overflow-hidden h-full
+            </NutrientInfoCard>
         </div>
     );
 };
 
-export default index;
+export default NutritionalSummary;
