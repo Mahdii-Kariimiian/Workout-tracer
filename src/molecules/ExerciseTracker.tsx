@@ -1,10 +1,11 @@
 import { useContext, useRef, useState } from "react";
 import { Context } from "../App";
 import { CiSquareRemove } from "react-icons/ci";
-import ExerciseForm from "./ExerciseForm";
+import WorkoutForm from "./WorkoutForm";
 import useClickOutside from "../customHooks/useClickOutside";
 import { BurnedArray } from "../types";
 import exercise from "../../public/icons/exercise.png";
+import InfoDisplay from "../atoms/InfoDisplay";
 
 const ExerciseTracker = () => {
     const {
@@ -45,65 +46,62 @@ const ExerciseTracker = () => {
                         setIsModal(false);
                         setIsModalExercise(!isModalExercise);
                     }}
-                    className={
-                        "bg-primary text-white px-3 py-2 rounded-sm uppercase whitespace-nowrap hover:bg-bgHover hover:transition-all hover:ease-in"
-                    }
+                    className="bg-primary text-white px-3 py-2 rounded-sm uppercase whitespace-nowrap hover:bg-bgHover hover:transition-all hover:ease-in"
                 >
                     Add New Exercise
                 </button>
             </div>
 
             <div className="flex-1 overflow-y-auto pr-5">
-                {burnedArray.map((item, index) => (
-                    <div
-                        key={index}
-                        className="border border-primary px-5 py-3 mb-2 rounded-lg"
-                        onClick={() => handleEdit(item)}
-                    >
-                        <div className="flex gap-3 items-baseline">
-                            <p className="text-xl font-josefin">{item.name}</p>
-                            <p className="text-[12px] font-josefin">
-                                {item.date}
-                            </p>
-                            <div
-                                className="ml-auto hover:bg-red-600 rounded-sm cursor-pointer hover:transition-all hover:ease-in"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleRemoveItem(index);
-                                }}
-                            >
-                                <CiSquareRemove className="text-2xl " />
+                {burnedArray.map((item, index) => {
+                    const inputArrays = [
+                        { name: "Category", val: item.categoryName },
+                        {
+                            name: "Calories Burned",
+                            val: item.caloriesBurned,
+                            unit: "Kcal",
+                        },
+                        {
+                            name: "Heart Rate",
+                            val: item.heartRate,
+                            unit: "Rpm",
+                        },
+                        { name: "Duration", val: item.duration, unit: "min" },
+                        { name: "Comment", val: item.comment },
+                        { name: "Number of Sets", val: item.nums },
+                        { name: "Sets", val: item.sets },
+                        { name: "Weight", val: item.weight, unit: "Kg" },
+                    ];
+
+                    return (
+                        <div
+                            key={index}
+                            className="border border-bgHover px-5 py-3 mb-2 rounded-lg cursor-pointer hover:bg-bgHover hover:text-lightText hover:transition-all hover:ease-in"
+                            onClick={() => handleEdit(item)}
+                        >
+                            <div className="flex gap-3 items-baseline mb-2">
+                                <p className="text-xl font-josefin">
+                                    {item.workout}
+                                </p>
+                                <p className="text-[12px] font-josefin">
+                                    {item.date}
+                                </p>
+                                <div
+                                    className="ml-auto hover:bg-red-600 rounded-sm cursor-pointer hover:transition-all hover:ease-in"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleRemoveItem(index);
+                                    }}
+                                >
+                                    <CiSquareRemove className="text-2xl " />
+                                </div>
                             </div>
+                            <InfoDisplay props={inputArrays} />
                         </div>
-                        <div className="flex gap-5 justify-between text-lg font-agdasima">
-                            <div>
-                                <p>Calories</p>
-                                <p className="font-josefin">
-                                    {item.caloriesBurned} Kcal
-                                </p>
-                            </div>
-                            <div>
-                                <p>Heart Rate</p>
-                                <p className="font-josefin">
-                                    {item.heartRate} Rpm
-                                </p>
-                            </div>
-                            <div>
-                                <p>Distance</p>
-                                <p className="font-josefin">
-                                    {item.distance} Km
-                                </p>
-                            </div>
-                            <div>
-                                <p>Duration</p>
-                                <p className="font-josefin">
-                                    {item.duration} m
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
+
             {isModalExercise && (
                 <div>
                     <div className="z-0 absolute inset-0 bg-black opacity-90"></div>
@@ -111,7 +109,7 @@ const ExerciseTracker = () => {
                         ref={modalRef}
                         className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]"
                     >
-                        <ExerciseForm selectedItem={selectedItem} />
+                        <WorkoutForm selectedItem={selectedItem} />
                     </div>
                 </div>
             )}

@@ -4,7 +4,7 @@ import { Context } from "../App";
 import { ConsumedArray } from "../types";
 import { CiSquareRemove } from "react-icons/ci";
 import useClickOutside from "../customHooks/useClickOutside";
-import NutrientDetails from "../atoms/NutrientDetails";
+import NutrientDetails from "../atoms/InfoDisplay.tsx";
 import lunch from "../../public/icons/lunch-box.png";
 
 const NutrientTracker = () => {
@@ -58,18 +58,18 @@ const NutrientTracker = () => {
             <div className="overflow-y-auto h-full overflow-x-hidden w-full pr-5">
                 {consumedArray.map((meal: ConsumedArray, index: number) => {
                     const nutrientData = [
-                        { name: "Carbs", nutrient: meal.carbs, unit: "gr" },
-                        { name: "Fat", nutrient: meal.fat, unit: "gr" },
-                        { name: "Protein", nutrient: meal.protein, unit: "gr" },
-                        { name: "Sum", nutrient: meal.sum, unit: "gr" },
+                        { name: "Carbs", val: meal.carbs, unit: "gr" },
+                        { name: "Fat", val: meal.fat, unit: "gr" },
+                        { name: "Protein", val: meal.protein, unit: "gr" },
+                        { name: "Sum", val: meal.sum, unit: "gr" },
                     ];
                     return (
                         <div
                             key={index}
-                            className="border border-lightText rounded-lg px-5 py-3 mb-2 hover:bg-bgHover hover:transition-all hover:ease-in cursor-pointer"
+                            className="border border-lightText rounded-lg px-5 py-3 mb-2 hover:bg-bgLight hover:text-darkText hover:transition-all hover:ease-in cursor-pointer"
                             onClick={() => handleEdit(meal)}
                         >
-                            <div className="flex gap-3 items-baseline">
+                            <div className="flex gap-3 items-baseline mb-2">
                                 <p className="text-xl font-josefin">
                                     {meal.name}
                                 </p>
@@ -88,32 +88,6 @@ const NutrientTracker = () => {
                             </div>
 
                             <NutrientDetails props={nutrientData} />
-                            {/*<div className="flex gap-5 justify-between text-xl font-agdasima">
-                                <div>
-                                    <p>Carbs</p>
-                                    <p className="font-josefin whitespace-nowrap">
-                                        {meal.carbs} gr
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>Fat</p>
-                                    <p className="font-josefin whitespace-nowrap">
-                                        {meal.fat} gr
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>Protein</p>
-                                    <p className="font-josefin whitespace-nowrap">
-                                        {meal.protein} gr
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>Sum</p>
-                                    <p className="font-josefin whitespace-nowrap">
-                                        {meal.sum} gr
-                                    </p>
-                                </div>
-                            </div> */}
                         </div>
                     );
                 })}

@@ -1,18 +1,22 @@
 import React from "react";
-import { NutrientInfoProps } from "../types";
+import { InfoDisplayProps } from "../types";
 type PropsType = {
-    props: NutrientInfoProps;
+    props: InfoDisplayProps;
 };
 
-const NutrientInfo: React.FC<PropsType> = ({ props }) => {
+const InfoDisplay: React.FC<PropsType> = ({ props }) => {
     return (
-        <div className="flex gap-2 justify-between">
+        <div
+            className={`${
+                props.length > 5 ? "grid grid-cols-2 gap-1" : "flex gap-2 justify-between"
+            }`}
+        >
             {props.map((item) => {
                 return (
                     <div>
                         <p>{item.name}</p>
                         <p className="font-josefin whitespace-nowrap">
-                            {item.nutrient} {item.unit}{" "}
+                            {item.val} {item?.unit}
                         </p>
                     </div>
                 );
@@ -21,4 +25,4 @@ const NutrientInfo: React.FC<PropsType> = ({ props }) => {
     );
 };
 
-export default NutrientInfo;
+export default InfoDisplay;

@@ -24,18 +24,20 @@ const CaloryBurned = () => {
                     ? burnedArray[burnedArray.length - 1].caloriesBurned
                     : 0,
             icon: food,
+            unit: "Kcal",
         },
         {
             title: "Heart Rate",
             quantity: burnedArray.length > 0 ? heartRate : 0,
             icon: heartRateIcon,
+            unit: "Rpm",
         },
     ];
 
     return (
-        <div className="">
+        <div className="h-full">
             <NutrientInfoCard props={InfoArray}>
-                flex flex-col flex-1 h-full
+                flex flex-col h-full
             </NutrientInfoCard>
         </div>
     );

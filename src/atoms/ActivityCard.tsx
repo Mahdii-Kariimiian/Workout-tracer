@@ -16,10 +16,10 @@ const MainCard: React.FC<MainCardProps> = ({ props, children }) => {
                 >
                     <img className="w-8" src={item.icon} alt={item.icon} />
 
-                    <div>
+                    <div className="space-y-1">
                         <h2 className="text-lg font-agdasima">{item.title}</h2>
                         <p className="text-xl font-josefin">
-                            {item.quantity} km
+                            {item.quantity} {item.unit}
                         </p>
                     </div>
                 </div>

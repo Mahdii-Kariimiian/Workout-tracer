@@ -13,6 +13,7 @@ const MealForm = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
     const [protein, setProtein] = useState<number>(selectedItem?.protein || 0);
     const [fat, setFat] = useState<number>(selectedItem?.fat || 0);
     const [water, setWater] = useState<number>(selectedItem?.water || 0);
+
     // For checking Empty Input
     const [isEmptyInput, setIsEmptyInput] = useState<boolean>(() => {
         return selectedItem ? false : true;
@@ -29,10 +30,10 @@ const MealForm = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
     }, [selectedItem]);
 
     const inputArrays = [
-        { label: "carbs", state: carbs, setState: setCarbs },
-        { label: "protein", state: protein, setState: setProtein },
-        { label: "fat", state: fat, setState: setFat },
-        { label: "water", state: water, setState: setWater },
+        { label: "carbs", state: carbs, setNumberState: setCarbs },
+        { label: "protein", state: protein, setNumberState: setProtein },
+        { label: "fat", state: fat, setNumberState: setFat },
+        { label: "water", state: water, setNumberState: setWater },
     ];
 
     const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
@@ -112,51 +113,6 @@ const MealForm = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
                 >
                     {selectedItem ? "Update Meal" : "Add Meal"}
                 </button>
-                {/*
-                <label className="mb-1" htmlFor="protein">
-                    Protein
-                </label>
-                <input
-                    className="mb-3 text-darkText p-1"
-                    onChange={(e) => setProtein(parseFloat(e.target.value))}
-                    value={protein}
-                    type="number"
-                    name="protein"
-                    id="protein"
-                    placeholder="protein"
-                />
-                <label className="mb-1" htmlFor="carbs">
-                    Carbs
-                </label>
-                <input
-                    className="mb-3 text-darkText p-1"
-                    onChange={(e) => setCarbs(parseFloat(e.target.value))}
-                    value={carbs}
-                    type="number"
-                    name="carbs"
-                    id="carbs"
-                    placeholder="carbs"
-                />
-                <label htmlFor="fat">Fat</label>
-                <input
-                    className="mb-3 text-darkText p-1"
-                    onChange={(e) => setFat(parseFloat(e.target.value))}
-                    value={fat}
-                    type="number"
-                    name="fat"
-                    id="fat"
-                    placeholder="fat"
-                />
-                <label htmlFor="water">Water</label>
-                <input
-                    className="mb-7 p-1 text-darkText"
-                    onChange={(e) => setWater(parseFloat(e.target.value))}
-                    value={water}
-                    type="number"
-                    name="water"
-                    id="water"
-                    placeholder="water"
-                /> */}
             </form>
         </div>
     );

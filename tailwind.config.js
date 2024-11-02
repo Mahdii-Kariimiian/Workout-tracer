@@ -8,8 +8,8 @@ export default {
                 agdasima: ["'Agdasima'", "sans-serif"],
             },
             colors: {
-                secondary: "#d37c12",
-                primary: "#003b36",
+                secondary: "rgba(255,111,0,1)",
+                primary: "rgba(0,59,54,1)",
                 darkText: "#012622",
                 lightText: "#ece5f0",
                 bgLight: "#ece5f0",
@@ -17,9 +17,9 @@ export default {
             },
             backgroundImage: {
                 gradientSecondary:
-                    "linear-gradient(301deg, rgba(211,124,18,1) 0%, rgba(255,175,0,1) 100%);",
+                    "linear-gradient(0deg, rgba(255,199,125,1) 0%, rgba(255,111,0,1) 100%);",
                 gradientPrimary:
-                    " linear-gradient(59deg, rgba(0,102,94,1) 0%, rgba(0,59,54,1) 100%);",
+                    " linear-gradient(0deg, rgba(0,102,110,1) 0%, rgba(0,59,54,1) 100%);",
             },
         },
     },

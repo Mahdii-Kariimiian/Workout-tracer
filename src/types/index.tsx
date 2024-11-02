@@ -9,11 +9,16 @@ export type ConsumedArray = {
 };
 
 export type BurnedArray = {
-    name: string;
-    heartRate: number;
+    categoryName: string;
+    workout: string;
+    sets: number;
+    nums: number;
     caloriesBurned: number;
+    weight: number;
     duration: number;
-    distance: number;
+    heartRate: number;
+    comment: string;
+    distance?: number;
     date: string;
 };
 
@@ -41,12 +46,16 @@ export type ConsumedItems = {
     title: string;
     quantity: number;
     icon: string;
+    unit: string;
 };
 
 export type InputCardProps = {
     label: string;
     state: string | number;
-    setState: React.Dispatch<React.SetStateAction<number>>;
+    setStringState?: React.Dispatch<React.SetStateAction<string>>;
+    setNumberState?: React.Dispatch<React.SetStateAction<number>>;
+
+    options?: string[];
 }[];
 
 export type ConsumedBoxProps = ConsumedItems[];
@@ -61,8 +70,8 @@ export type UseClickOutsideProps = {
     setState: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export type NutrientInfoProps = {
+export type InfoDisplayProps = {
     name: string;
-    unit: string;
-    nutrient: React.ReactNode;
+    unit?: string;
+    val: React.ReactNode;
 }[];

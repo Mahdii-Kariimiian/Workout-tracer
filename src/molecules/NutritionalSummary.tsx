@@ -1,9 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import NutrientInfoCard from "../atoms/NutrientInfoCard";
-import { TbMeat } from "react-icons/tb";
-import { GiFat } from "react-icons/gi";
-import { GiSlicedBread } from "react-icons/gi";
-import { IoIosWater } from "react-icons/io";
 import { Context } from "../App";
 import { AppContextType, ConsumedBoxProps } from "../types";
 import meat from "../../public/icons/meat.png";
@@ -12,12 +8,14 @@ import waterBottle from "../../public/icons/water-bottle.png";
 import food from "../../public/icons/food.png";
 
 const NutritionalSummary = () => {
+    // States
     const { consumedArray } = useContext<AppContextType>(Context);
     const [proteinSum, setProteinSum] = useState<number>(0);
     const [carbsSum, setCarbsSum] = useState<number>(0);
     const [fatSum, setFatSum] = useState<number>(0);
     const [waterSum, setWaterSum] = useState<number>(0);
 
+    // Calculate sum of inputs
     useEffect(() => {
         if (consumedArray && consumedArray.length > 0) {
             const totalProtein = consumedArray.reduce(
@@ -41,14 +39,20 @@ const NutritionalSummary = () => {
             setCarbsSum(totalCarbs);
             setFatSum(totalFat);
             setWaterSum(totalWater);
+        } else {
+            setProteinSum(0);
+            setCarbsSum(0);
+            setFatSum(0);
+            setWaterSum(0);
         }
     }, [consumedArray]);
 
+    // Array to send for NutrientFood component
     const consumedInfo: ConsumedBoxProps = [
-        { title: "Protein", quantity: proteinSum, icon: meat },
-        { title: "Carbs", quantity: carbsSum, icon: food },
-        { title: "Fat", quantity: fatSum, icon: lipid },
-        { title: "Water", quantity: waterSum, icon: waterBottle },
+        { title: "Protein", quantity: proteinSum, icon: meat , unit: "gr" },
+        { title: "Carbs", quantity: carbsSum, icon: food  , unit: "gr"},
+        { title: "Fat", quantity: fatSum, icon: lipid  , unit: "gr"},
+        { title: "Water", quantity: waterSum, icon: waterBottle , unit : "L" },
     ];
 
     return (

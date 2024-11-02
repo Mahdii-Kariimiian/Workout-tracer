@@ -8,7 +8,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ props, children }) => {
             {props.map((item, index) => {
                 return (
                     <div
-                        className={`px-10 flex justify-between items-center ${
+                        className={`px-10 flex flex-1 justify-between items-center ${
                             index % 2 !== 0
                                 ? "bg-gradientSecondary"
                                 : "bg-gradientPrimary"
@@ -16,7 +16,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ props, children }) => {
                     >
                         <div
                             className={`space-y-2 ${
-                                index % 2 !== 0
+                                index % 2 === 0
                                     ? "text-lightText"
                                     : "text-darkText"
                             }`}
@@ -25,7 +25,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ props, children }) => {
                                 {item.title}
                             </p>
                             <p className="font-josefin text-xl">
-                                {item.quantity}
+                                {item.quantity} {item.unit}
                             </p>
                         </div>
                         <p
