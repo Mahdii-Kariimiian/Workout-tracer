@@ -1,10 +1,10 @@
 import { useContext, useRef } from "react";
 // Custom hook
-import useClickOutside from "../customHooks/useClickOutside";
+import useClickOutside from "../customHooks/use-cilck-outside";
 //Components
-import Login from "./Login";
+import Login from "../pages/login";
 // Context
-import { Context } from "../App";
+import { Context } from "../context/context-provider";
 // Icons
 import { IoStatsChartSharp } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";

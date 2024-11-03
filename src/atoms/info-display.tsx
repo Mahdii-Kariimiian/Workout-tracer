@@ -8,14 +8,16 @@ const InfoDisplay: React.FC<PropsType> = ({ props }) => {
     return (
         <div
             className={`${
-                props.length > 5 ? "grid grid-cols-2 gap-1" : "flex gap-2 justify-between"
+                props.length > 5
+                    ? "grid grid-cols-2 gap-1"
+                    : "flex gap-2 justify-between"
             }`}
         >
-            {props.map((item) => {
+            {props.map((item, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <p>{item.name}</p>
-                        <p className="font-josefin whitespace-nowrap">
+                        <p className="font-josefin whitespace-nowrap font-bold">
                             {item.val} {item?.unit}
                         </p>
                     </div>

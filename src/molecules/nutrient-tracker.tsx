@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from "react";
-import InsertMeal from "./MealForm";
-import { Context } from "../App";
-import { ConsumedArray } from "../types";
+import InsertMeal from "./meal-form.tsx";
+import { Context } from "../context/context-provider.tsx";
+import { ConsumedArray } from "../types/index.tsx";
 import { CiSquareRemove } from "react-icons/ci";
-import useClickOutside from "../customHooks/useClickOutside";
-import NutrientDetails from "../atoms/InfoDisplay.tsx";
+import useClickOutside from "../customHooks/use-cilck-outside.tsx";
+import NutrientDetails from "../atoms/info-display.tsx";
 import lunch from "../../public/icons/lunch-box.png";
 
 const NutrientTracker = () => {

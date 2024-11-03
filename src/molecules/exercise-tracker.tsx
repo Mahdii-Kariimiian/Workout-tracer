@@ -1,11 +1,11 @@
 import { useContext, useRef, useState } from "react";
-import { Context } from "../App";
+import { Context } from "../context/context-provider";
 import { CiSquareRemove } from "react-icons/ci";
-import WorkoutForm from "./WorkoutForm";
-import useClickOutside from "../customHooks/useClickOutside";
+import WorkoutForm from "./workout-form";
+import useClickOutside from "../customHooks/use-cilck-outside";
 import { BurnedArray } from "../types";
 import exercise from "../../public/icons/exercise.png";
-import InfoDisplay from "../atoms/InfoDisplay";
+import InfoDisplay from "../atoms/info-display";
 
 const ExerciseTracker = () => {
     const {
@@ -93,7 +93,7 @@ const ExerciseTracker = () => {
                                         handleRemoveItem(index);
                                     }}
                                 >
-                                    <CiSquareRemove className="text-2xl " />
+                                    <CiSquareRemove className="text-2xl" />
                                 </div>
                             </div>
                             <InfoDisplay props={inputArrays} />

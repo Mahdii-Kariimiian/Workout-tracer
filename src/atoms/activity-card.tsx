@@ -1,12 +1,12 @@
 import React from "react";
 import { ConsumedItems } from "../types";
 
-type MainCardProps = {
+type ActivityCardProps = {
     props: ConsumedItems[];
     children: string;
 };
 
-const MainCard: React.FC<MainCardProps> = ({ props, children }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({ props, children }) => {
     return (
         <div className={children}>
             {props.map((item, index) => (
@@ -28,4 +28,4 @@ const MainCard: React.FC<MainCardProps> = ({ props, children }) => {
     );
 };
 
-export default MainCard;
+export default ActivityCard;

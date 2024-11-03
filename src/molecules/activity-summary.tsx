@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from "react";
-import { Context } from "../App";
+import { Context } from "../context/context-provider";
 import { AppContextType } from "../types";
-import NutrientInfoCard from "../atoms/NutrientInfoCard";
+import NutrientInfoCard from "../atoms/nutrient-info-card";
 import heartRateIcon from "../../public/icons/heart-rate.png";
 import food from "../../public/icons/food.png";
 
-const CaloryBurned = () => {
+const ActivitySummary = () => {
     const { burnedArray } = useContext<AppContextType>(Context);
 
     const [heartRate, setHeartRate] = useState<number>(0);
@@ -43,4 +43,4 @@ const CaloryBurned = () => {
     );
 };
 
-export default CaloryBurned;
+export default ActivitySummary;

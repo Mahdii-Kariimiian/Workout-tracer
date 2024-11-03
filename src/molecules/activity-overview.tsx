@@ -1,11 +1,11 @@
-import { Context } from "../App";
+import { Context } from "../context/context-provider";
 import { useContext, useEffect, useState } from "react";
-import ActivityCard from "../atoms/ActivityCard";
+import ActivityCard from "../atoms/activity-card";
 import kcal from "../../public/icons/kcal.png";
 import cutlery from "../../public/icons/cutlery.png";
 import ranking from "../../public/icons/ranking.png";
 
-const MainInfo = () => {
+const ActivityOverview = () => {
     const { burnedArray, consumedArray } = useContext(Context);
 
     const [allConsumed, setAllConsumed] = useState<number>(0);
@@ -56,4 +56,4 @@ const MainInfo = () => {
     );
 };
 
-export default MainInfo;
+export default ActivityOverview;

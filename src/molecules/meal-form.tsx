@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../App";
+import { Context } from "../context/context-provider";
 import { AppContextType, ConsumedArray } from "../types";
-import FormInputCard from "../atoms/FormInputCard";
+import FormInputCard from "../atoms/form-input-card";
 
 const MealForm = ({ selectedItem }: { selectedItem?: ConsumedArray }) => {
     // Context

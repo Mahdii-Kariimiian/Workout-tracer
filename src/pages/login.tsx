@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { Context } from "../App";
+import { Navigate } from "react-router-dom";
+import { Context } from "../context/context-provider";
 import { AppContextType } from "../types";
 
 const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-    const { setLoginArray, setIsLoginOpen } =
+    const { setLoginArray, setIsLoginOpen, isLogged } =
         useContext<AppContextType>(Context);
 
     const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -20,8 +21,12 @@ const Login = () => {
         setIsLoginOpen(false);
     };
 
+    if (isLogged) {
+        return <Navigate to="/" />;
+    }
+
     return (
-        <div className="p-10 bg-bgLight rounded-lg font-josefin text-darkText">
+        <div className=" flex flex-col gap-5 justify-center items-center h-screen p-10 bg-bgLight rounded-lg font-josefin text-darkText">
             <form noValidate className="flex flex-col">
                 <label htmlFor="username" className="mb-1">
                     Username
@@ -56,6 +61,11 @@ const Login = () => {
                     Submit
                 </button>
             </form>
+            {!isLogged && (
+                <p className="text-red-500 font-agdasima text-xl font-bold">
+                    Username or Password are wrong
+                </p>
+            )}
         </div>
     );
 };

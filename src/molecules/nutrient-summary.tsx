@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import NutrientInfoCard from "../atoms/NutrientInfoCard";
-import { Context } from "../App";
+import NutrientInfoCard from "../atoms/nutrient-info-card";
+import { Context } from "../context/context-provider";
 import { AppContextType, ConsumedBoxProps } from "../types";
 import meat from "../../public/icons/meat.png";
 import lipid from "../../public/icons/lipid.png";
 import waterBottle from "../../public/icons/water-bottle.png";
 import food from "../../public/icons/food.png";
 
-const NutritionalSummary = () => {
+const nutrientSummary = () => {
     // States
     const { consumedArray } = useContext<AppContextType>(Context);
     const [proteinSum, setProteinSum] = useState<number>(0);
@@ -49,10 +49,10 @@ const NutritionalSummary = () => {
 
     // Array to send for NutrientFood component
     const consumedInfo: ConsumedBoxProps = [
-        { title: "Protein", quantity: proteinSum, icon: meat , unit: "gr" },
-        { title: "Carbs", quantity: carbsSum, icon: food  , unit: "gr"},
-        { title: "Fat", quantity: fatSum, icon: lipid  , unit: "gr"},
-        { title: "Water", quantity: waterSum, icon: waterBottle , unit : "L" },
+        { title: "Protein", quantity: proteinSum, icon: meat, unit: "gr" },
+        { title: "Carbs", quantity: carbsSum, icon: food, unit: "gr" },
+        { title: "Fat", quantity: fatSum, icon: lipid, unit: "gr" },
+        { title: "Water", quantity: waterSum, icon: waterBottle, unit: "L" },
     ];
 
     return (
@@ -64,4 +64,4 @@ const NutritionalSummary = () => {
     );
 };
 
-export default NutritionalSummary;
+export default nutrientSummary;

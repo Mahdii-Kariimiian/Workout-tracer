@@ -1,13 +1,14 @@
 import { ConsumedItems } from "../types";
 
-type InfoCardProps = { props: ConsumedItems[]; children: string };
+type NutrientInfoCards = { props: ConsumedItems[]; children: string };
 
-const InfoCard: React.FC<InfoCardProps> = ({ props, children }) => {
+const NutrientInfoCard: React.FC<NutrientInfoCards> = ({ props, children }) => {
     return (
         <div className={children}>
             {props.map((item, index) => {
                 return (
                     <div
+                        key={index}
                         className={`px-10 flex flex-1 justify-between items-center ${
                             index % 2 !== 0
                                 ? "bg-gradientSecondary"
@@ -48,4 +49,4 @@ const InfoCard: React.FC<InfoCardProps> = ({ props, children }) => {
     );
 };
 
-export default InfoCard;
+export default NutrientInfoCard;
