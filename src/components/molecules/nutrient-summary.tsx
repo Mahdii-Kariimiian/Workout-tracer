@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import NutrientInfoCard from "../atoms/nutrient-info-card";
-import { Context } from "../context/context-provider";
-import { AppContextType, ConsumedBoxProps } from "../types";
-import meat from "../../public/icons/meat.png";
-import lipid from "../../public/icons/lipid.png";
-import waterBottle from "../../public/icons/water-bottle.png";
-import food from "../../public/icons/food.png";
+import { Context } from "../../context/context-provider";
+import { AppContextType, ConsumedBoxProps } from "../../types";
+import meat from "../../../public/icons/meat.png";
+import lipid from "../../../public/icons/lipid.png";
+import waterBottle from "../../../public/icons/water-bottle.png";
+import food from "../../../public/icons/food.png";
 
 const nutrientSummary = () => {
     // States

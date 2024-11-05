@@ -1,19 +1,21 @@
 import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
 // Custom hook
-import useClickOutside from "../customHooks/use-cilck-outside";
+import useClickOutside from "../../customHooks/use-click-outside";
 //Components
-import Login from "../pages/login";
+import Login from "../../pages/login";
 // Context
-import { Context } from "../context/context-provider";
+import { authContext } from "../../context/authorization";
+import { Context } from "../../context/context-provider";
 // Icons
-import { IoStatsChartSharp } from "react-icons/io5";
-import { IoPerson } from "react-icons/io5";
-import { FaCheckCircle } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
+import profile from "../../../public/icons/user.png";
+import barBell from "../../../public/icons/barbell.png";
+import meal from "../../../public/icons/food.png";
 
 const Sidebar = () => {
-    const { isLoginOpen, setIsLoginOpen, setIsModal, setIsModalExercise } =
-        useContext(Context); //use global context
+    const { isLoginOpen, setIsLoginOpen } = useContext(authContext); //use global context
+    const { setIsModal, setIsModalExercise } = useContext(Context);
 
     const modalRef = useRef<HTMLDivElement>(null); //Ref for modal to check clicking outside
 
@@ -34,13 +36,18 @@ const Sidebar = () => {
                 </div>
                 <div className="w-8 h-3 bg-darkText mt-2"></div>
             </div>
+
             <div className="flex sm:flex-col gap-10 sm:mt-36 text-darkText items-center">
-                <FaCheckCircle className="w-8 h-8" />
-                <IoPerson
-                    onClick={handleProfileClick}
-                    className="w-8 h-8 cursor-pointer hover:text-bgHover hover:transition-all hover:ease-in"
-                />
-                <IoStatsChartSharp className="w-8 h-8" />
+                <Link className="w-10" to={"/exercises"}>
+                    <img src={barBell} alt="barBell" />
+                </Link>
+                <Link className="w-10" to={"/meals"}>
+                    <img src={meal} alt="meal" />
+                </Link>
+                <Link className="w-10" onClick={handleProfileClick} to={"/login"}>
+                    <img src={profile} alt="profile" />
+                </Link>
+
                 <IoIosSettings className="w-8 h-8" />
             </div>
 

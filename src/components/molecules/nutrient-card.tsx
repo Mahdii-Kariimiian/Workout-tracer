@@ -1,0 +1,41 @@
+import { FC } from "react";
+import { CiSquareRemove } from "react-icons/ci";
+import NutrientDetails from "../atoms/info-display";
+
+interface NutrientCardProps {
+    handleEdit: () => void;
+    handleRemoveItem: () => void;
+    data: { name: string; val: number; unit: string }[];
+    title: string;
+    date?: string;
+}
+
+const NutrientCard: FC<NutrientCardProps> = ({
+    handleEdit,
+    handleRemoveItem,
+    data,
+    title,
+    date,
+}) => (
+    <div
+        className="border border-bgHover rounded-lg px-5 py-3 mb-2 cursor-pointer hover:text-lightText hover:bg-bgHover transition-all hover:ease-in"
+        onClick={handleEdit}
+    >
+        <div className="flex gap-3 items-baseline mb-2">
+            <p className="text-xl font-josefin">{title}</p>
+            <p className="text-[12px] font-josefin">{date}</p>
+            <button
+                className="ml-auto cursor-pointer hover:bg-red-600 rounded-sm"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveItem();
+                }}
+            >
+                <CiSquareRemove className="text-2xl" />
+            </button>
+        </div>
+        <NutrientDetails props={data} />
+    </div>
+);
+
+export default NutrientCard;

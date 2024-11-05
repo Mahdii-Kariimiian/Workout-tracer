@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction, ReactNode, RefObject } from "react";
+
 export type ConsumedArray = {
     name: string;
     carbs: number;
@@ -23,23 +25,28 @@ export type BurnedArray = {
 };
 
 export type InsertMealTypes = {
-    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setConsumedArray: React.Dispatch<React.SetStateAction<ConsumedArray[]>>;
+    setIsModal: Dispatch<SetStateAction<boolean>>;
+    setConsumedArray: Dispatch<SetStateAction<ConsumedArray[]>>;
 };
 
 export interface AppContextType {
     isModal: boolean;
-    setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModal: Dispatch<SetStateAction<boolean>>;
     isModalExercise: boolean;
-    setIsModalExercise: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModalExercise: Dispatch<SetStateAction<boolean>>;
     consumedArray: ConsumedArray[];
-    setConsumedArray: React.Dispatch<React.SetStateAction<ConsumedArray[]>>;
-    setBurnedArray: React.Dispatch<React.SetStateAction<BurnedArray[]>>;
+    setConsumedArray: Dispatch<SetStateAction<ConsumedArray[]>>;
+    setBurnedArray: Dispatch<SetStateAction<BurnedArray[]>>;
     burnedArray: BurnedArray[];
-    setLoginArray: React.Dispatch<React.SetStateAction<LoginType>>;
+}
+
+export interface authorizationType {
     isLogged: boolean;
-    setIsLoginOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsLogged: Dispatch<SetStateAction<boolean>>;
+    loginArray: LoginType;
+    setLoginArray: Dispatch<SetStateAction<LoginType>>;
     isLoginOpen: boolean;
+    setIsLoginOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export type ConsumedItems = {
@@ -52,8 +59,8 @@ export type ConsumedItems = {
 export type InputCardProps = {
     label: string;
     state: string | number;
-    setStringState?: React.Dispatch<React.SetStateAction<string>>;
-    setNumberState?: React.Dispatch<React.SetStateAction<number>>;
+    setStringState?: Dispatch<SetStateAction<string>>;
+    setNumberState?: Dispatch<SetStateAction<number>>;
 
     options?: string[];
 }[];
@@ -66,12 +73,12 @@ export type LoginType = {
 };
 
 export type UseClickOutsideProps = {
-    ref: React.RefObject<HTMLElement>;
-    setState: React.Dispatch<React.SetStateAction<boolean>>;
+    ref: RefObject<HTMLElement>;
+    setState: Dispatch<SetStateAction<boolean>>;
 };
 
 export type InfoDisplayProps = {
     name: string;
     unit?: string;
-    val: React.ReactNode;
+    val: ReactNode;
 }[];

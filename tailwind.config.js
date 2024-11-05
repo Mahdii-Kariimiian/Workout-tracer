@@ -20,6 +20,8 @@ export default {
                     "linear-gradient(0deg, rgba(255,199,125,1) 0%, rgba(255,111,0,1) 100%);",
                 gradientPrimary:
                     " linear-gradient(0deg, rgba(0,102,110,1) 0%, rgba(0,59,54,1) 100%);",
+                bgLightGradient:
+                    "linear-gradient(30deg, rgba(255,255,255,1) 0%, rgba(225,255,255,1) 25%, rgba(200,255,255,1) 50%, rgba(175,255,255,1) 75%, rgba(150,255,255,1) 100%);",
             },
         },
     },

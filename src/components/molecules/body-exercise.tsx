@@ -1,4 +1,4 @@
-import bodyMuscles from "../assets/images/body muscles.avif";
+import bodyMuscles from "../../assets/images/body muscles.avif";
 
 const BodyExercises = () => {
     return (

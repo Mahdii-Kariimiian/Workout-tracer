@@ -1,5 +1,5 @@
 import React from "react";
-import { InputCardProps } from "../types";
+import { InputCardProps } from "../../types";
 
 type PropsType = { props: InputCardProps };
 

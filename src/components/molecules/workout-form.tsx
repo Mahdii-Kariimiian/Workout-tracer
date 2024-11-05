@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
-import { Context } from "../context/context-provider";
-import { AppContextType, BurnedArray, InputCardProps } from "../types";
+import { Context } from "../../context/context-provider";
+import { AppContextType, BurnedArray, InputCardProps } from "../../types";
 import FormInputCard from "../atoms/form-input-card";
 
 const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {

@@ -1,9 +1,9 @@
-import { Context } from "../context/context-provider";
+import { Context } from "../../context/context-provider";
 import { useContext, useEffect, useState } from "react";
 import ActivityCard from "../atoms/activity-card";
-import kcal from "../../public/icons/kcal.png";
-import cutlery from "../../public/icons/cutlery.png";
-import ranking from "../../public/icons/ranking.png";
+import kcal from "../../../public/icons/kcal.png";
+import cutlery from "../../../public/icons/cutlery.png";
+import ranking from "../../../public/icons/ranking.png";
 
 const ActivityOverview = () => {
     const { burnedArray, consumedArray } = useContext(Context);

@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from "react";
-import { Context } from "../context/context-provider";
+import { Context } from "../../context/context-provider";
 import { CiSquareRemove } from "react-icons/ci";
 import WorkoutForm from "./workout-form";
-import useClickOutside from "../customHooks/use-cilck-outside";
-import { BurnedArray } from "../types";
-import exercise from "../../public/icons/exercise.png";
+import useClickOutside from "../../customHooks/use-click-outside";
+import { BurnedArray } from "../../types";
+import exercise from "../../../public/icons/exercise.png";
 import InfoDisplay from "../atoms/info-display";
 
 const ExerciseTracker = () => {

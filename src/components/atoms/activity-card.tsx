@@ -1,5 +1,5 @@
 import React from "react";
-import { ConsumedItems } from "../types";
+import { ConsumedItems } from "../../types";
 
 type ActivityCardProps = {
     props: ConsumedItems[];

@@ -1,9 +1,9 @@
 import { useState, useContext, useEffect } from "react";
-import { Context } from "../context/context-provider";
-import { AppContextType } from "../types";
+import { Context } from "../../context/context-provider";
+import { AppContextType } from "../../types";
 import NutrientInfoCard from "../atoms/nutrient-info-card";
-import heartRateIcon from "../../public/icons/heart-rate.png";
-import food from "../../public/icons/food.png";
+import heartRateIcon from "../../../public/icons/heart-rate.png";
+import food from "../../../public/icons/food.png";
 
 const ActivitySummary = () => {
     const { burnedArray } = useContext<AppContextType>(Context);

@@ -1,4 +1,4 @@
-import { ConsumedItems } from "../types";
+import { ConsumedItems } from "../../types";
 
 type NutrientInfoCards = { props: ConsumedItems[]; children: string };
 

@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { Context } from "../context/context-provider";
-import { AppContextType } from "../types";
+import { authContext } from "../context/authorization";
 
 const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-    const { setLoginArray, setIsLoginOpen, isLogged } =
-        useContext<AppContextType>(Context);
+    const { setLoginArray, setIsLoginOpen, isLogged } = useContext(authContext);
+    console.log(setIsLoginOpen);
 
     const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();

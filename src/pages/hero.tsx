@@ -1,11 +1,11 @@
 // Components
-import MainInfo from "../molecules/activity-overview";
-import NutritionalSummary from "../molecules/nutrient-summary";
-import BodyExercises from "../molecules/body-exercise";
-import NutrientTracker from "../molecules/nutrient-tracker";
-import ActivityStats from "../molecules/activity-summary";
-import ExerciseBox from "../molecules/exercise-tracker";
-import Sidebar from "../molecules/side-bar";
+import MainInfo from "../components/molecules/activity-overview";
+import NutritionalSummary from "../components/molecules/nutrient-summary";
+import BodyExercises from "../components/molecules/body-exercise";
+import NutrientTracker from "../components/molecules/nutrient-tracker";
+import ActivityStats from "../components/molecules/activity-summary";
+import ExerciseBox from "../components/molecules/exercise-tracker";
+import Sidebar from "../components/molecules/side-bar";
 
 function Hero() {
     return (
