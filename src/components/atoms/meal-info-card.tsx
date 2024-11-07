@@ -1,8 +1,8 @@
 import { ConsumedItems } from "../../types";
 
-type NutrientInfoCards = { props: ConsumedItems[]; children: string };
+type MealInfoCardProps = { props: ConsumedItems[]; children: string };
 
-const NutrientInfoCard: React.FC<NutrientInfoCards> = ({ props, children }) => {
+const MealInfoCard: React.FC<MealInfoCardProps> = ({ props, children }) => {
     return (
         <div className={children}>
             {props.map((item, index) => {
@@ -49,4 +49,4 @@ const NutrientInfoCard: React.FC<NutrientInfoCards> = ({ props, children }) => {
     );
 };
 
-export default NutrientInfoCard;
+export default MealInfoCard;

@@ -13,7 +13,7 @@ const ActivityOverview = () => {
 
     useEffect(() => {
         const burnedAll = burnedArray?.reduce(
-            (acc, item) => acc + item.caloriesBurned,
+            (acc, item) => acc + item.sum,
             0
         );
 

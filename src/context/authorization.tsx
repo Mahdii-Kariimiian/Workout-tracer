@@ -56,8 +56,6 @@ const Authorization: FC<AuthorizationChildrenType> = ({ children }) => {
     }, []);
 
     // Save to localStorage when arrays change
-    console.log(burnedArray);
-    console.log(consumedArray);
     useEffect(() => {
         const savedBurned = localStorage.getItem("burnedArray");
         setBurnedArray(savedBurned ? JSON.parse(savedBurned) : []);

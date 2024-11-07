@@ -6,7 +6,6 @@ const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const { setLoginArray, setIsLoginOpen, isLogged } = useContext(authContext);
-    console.log(setIsLoginOpen);
 
     const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();

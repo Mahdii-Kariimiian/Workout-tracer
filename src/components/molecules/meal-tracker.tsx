@@ -3,9 +3,9 @@ import lunch from "../../../public/icons/lunch-box.png";
 import { Context } from "../../context/context-provider";
 import { Link, useNavigate } from "react-router-dom";
 import { ConsumedArray } from "../../types";
-import NutrientCard from "./nutrient-card";
+import RecordCard from "./record-card";
 
-const NutrientTracker = () => {
+const MealTracker = () => {
     const { setIsModal, consumedArray, setConsumedArray } = useContext(Context);
     const handleRemoveItem = (index: number) => {
         setConsumedArray(consumedArray.filter((_, i) => i !== index));
@@ -30,9 +30,9 @@ const NutrientTracker = () => {
             <div className="flex flex-col overflow-auto gap-2">
                 {consumedArray?.map((meal: ConsumedArray, index: number) => (
                     <div key={index}>
-                        <NutrientCard
+                        <RecordCard
                             key={index}
-                            handleEdit={() => navigate(`/meals/form/${index}`)}
+                            handleEditItem={() => navigate(`/meals/form/${index}`)}
                             handleRemoveItem={() => handleRemoveItem(index)}
                             data={[
                                 { name: "Carbs", val: meal.carbs, unit: "gr" },
@@ -54,4 +54,4 @@ const NutrientTracker = () => {
     );
 };
 
-export default NutrientTracker;
+export default MealTracker;

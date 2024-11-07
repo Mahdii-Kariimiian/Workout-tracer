@@ -1,33 +1,42 @@
 import { useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Context } from "../../context/context-provider";
 import { AppContextType, BurnedArray, InputCardProps } from "../../types";
 import FormInputCard from "../atoms/form-input-card";
 
-const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
+const WorkoutForm = () => {
     // Context
     const { setBurnedArray, setIsModalExercise } =
         useContext<AppContextType>(Context);
 
     // States
     const [categoryName, setCategoryName] = useState<string>("");
-    const [workout, setWorkout] = useState<string>("");
+    const [name, setName] = useState<string>("");
     const [sets, setSets] = useState<number>(0);
     const [nums, setNums] = useState<number>(0);
     const [weight, setWeight] = useState<number>(0);
-    const [caloriesBurned, setCaloriesBurned] = useState<number>(0);
+    const [sum, setSum] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const [heartRate, setHeartRate] = useState<number>(0);
     const [comment, setComment] = useState<string>("");
+
+    //Get selected Item Info
+    const { state } = useLocation();
+    const [selectedItem, setSelectedItem] = useState<BurnedArray>();
+
+    useEffect(() => {
+        state && setSelectedItem(state.item);
+    }, []);
 
     // Put values in Inputs on Edit mode
     useEffect(() => {
         if (selectedItem) {
             setCategoryName(selectedItem.categoryName);
-            setWorkout(selectedItem.workout);
+            setName(selectedItem.name);
             setSets(selectedItem.sets);
             setNums(selectedItem.nums);
             setWeight(selectedItem.weight);
-            setCaloriesBurned(selectedItem.caloriesBurned);
+            setSum(selectedItem.sum);
             setDuration(selectedItem.duration);
             setHeartRate(selectedItem.heartRate);
             setComment(selectedItem.comment);
@@ -42,15 +51,15 @@ const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
         if (selectedItem) {
             setBurnedArray?.((prev) =>
                 prev.map((item) =>
-                    item === selectedItem
+                    item == selectedItem
                         ? {
                               ...item,
                               categoryName,
-                              workout,
+                              name,
                               sets,
                               nums,
                               weight,
-                              caloriesBurned,
+                              sum,
                               duration,
                               heartRate,
                               comment,
@@ -64,11 +73,11 @@ const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
                 ...prev,
                 {
                     categoryName,
-                    workout,
+                    name,
                     sets,
                     nums,
                     weight,
-                    caloriesBurned,
+                    sum,
                     duration,
                     heartRate,
                     comment,
@@ -81,9 +90,9 @@ const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
     // Arrays For InputCard Component
     const inputArrays: InputCardProps = [
         {
-            label: "Workout",
-            state: workout,
-            setStringState: setWorkout,
+            label: "workout",
+            state: name,
+            setStringState: setName,
             options: [
                 "Select a Workout",
                 "Barbell Bench Press",
@@ -118,8 +127,8 @@ const WorkoutForm = ({ selectedItem }: { selectedItem?: BurnedArray }) => {
         { label: "Weight", state: weight, setNumberState: setWeight },
         {
             label: "Calories Burned",
-            state: caloriesBurned,
-            setNumberState: setCaloriesBurned,
+            state: sum,
+            setNumberState: setSum,
         },
         { label: "Heart Rate", state: heartRate, setNumberState: setHeartRate },
         { label: "Duration", state: duration, setNumberState: setDuration },

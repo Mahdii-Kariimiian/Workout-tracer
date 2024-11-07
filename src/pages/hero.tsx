@@ -1,10 +1,10 @@
 // Components
 import MainInfo from "../components/molecules/activity-overview";
-import NutritionalSummary from "../components/molecules/nutrient-summary";
+import MealSummary from "../components/molecules/meal-summary";
 import BodyExercises from "../components/molecules/body-exercise";
-import NutrientTracker from "../components/molecules/nutrient-tracker";
+import MealTracker from "../components/molecules/meal-tracker";
 import ActivityStats from "../components/molecules/activity-summary";
-import ExerciseBox from "../components/molecules/exercise-tracker";
+import WorkoutTracker from "../components/molecules/workout-tracker";
 import Sidebar from "../components/molecules/side-bar";
 
 function Hero() {
@@ -18,13 +18,13 @@ function Hero() {
                             <MainInfo />
                         </div>
                         <div className="lg:col-span-4">
-                            <NutritionalSummary />
+                            <MealSummary />
                         </div>
                         <div className="lg:col-span-4 row-span-2">
-                            <ExerciseBox />
+                            <WorkoutTracker />
                         </div>
                         <div className="lg:col-span-4 row-span-2 ">
-                            <NutrientTracker />
+                            <MealTracker />
                         </div>
                         <div className="lg:col-span-4 lg:order-last ">
                             <ActivityStats />

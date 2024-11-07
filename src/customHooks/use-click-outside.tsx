@@ -6,8 +6,6 @@ const useClickOutside = ({ ref, setState }: UseClickOutsideProps) => {
         const handleClickOutside = (e: MouseEvent) => {
             if (ref.current && !ref.current.contains(e.target as Node)) {
                 setState(false);
-                console.log(ref);
-                console.log(setState);
             }
         };
 

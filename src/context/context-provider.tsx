@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useState } from "react";
 import { AppContextType, BurnedArray, ConsumedArray } from "../types";
-import NutrientProvider from "../context/nutrient-provider";
+import MealProvider from "./activity-provider";
 
 export const Context = createContext<AppContextType>({
     isModal: false,
@@ -26,7 +26,7 @@ const ContextProvider: FC<ChildrenType> = ({ children }) => {
     const [burnedArray, setBurnedArray] = useState<BurnedArray[]>([]);
 
     return (
-        <NutrientProvider>
+        <MealProvider>
             <Context.Provider
                 value={{
                     isModal,
@@ -41,7 +41,7 @@ const ContextProvider: FC<ChildrenType> = ({ children }) => {
             >
                 {children}
             </Context.Provider>
-        </NutrientProvider>
+        </MealProvider>
     );
 };
 

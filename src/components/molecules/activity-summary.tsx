@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Context } from "../../context/context-provider";
 import { AppContextType } from "../../types";
-import NutrientInfoCard from "../atoms/nutrient-info-card";
+import MealInfoCard from "../atoms/meal-info-card";
 import heartRateIcon from "../../../public/icons/heart-rate.png";
 import food from "../../../public/icons/food.png";
 
@@ -21,7 +21,7 @@ const ActivitySummary = () => {
             title: "Calories Consumed",
             quantity:
                 burnedArray.length > 0
-                    ? burnedArray[burnedArray.length - 1].caloriesBurned
+                    ? burnedArray[burnedArray.length - 1].sum
                     : 0,
             icon: food,
             unit: "Kcal",
@@ -36,9 +36,7 @@ const ActivitySummary = () => {
 
     return (
         <div className="h-full">
-            <NutrientInfoCard props={InfoArray}>
-                flex flex-col h-full
-            </NutrientInfoCard>
+            <MealInfoCard props={InfoArray}>flex flex-col h-full</MealInfoCard>
         </div>
     );
 };

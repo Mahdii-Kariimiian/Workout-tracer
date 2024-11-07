@@ -12,10 +12,10 @@ export type ConsumedArray = {
 
 export type BurnedArray = {
     categoryName: string;
-    workout: string;
+    name: string;
     sets: number;
     nums: number;
-    caloriesBurned: number;
+    sum: number;
     weight: number;
     duration: number;
     heartRate: number;
@@ -23,6 +23,15 @@ export type BurnedArray = {
     distance?: number;
     date: string;
 };
+
+export interface RecordCardProps {
+    handleEdit?: () => void;
+    handleRemove?: () => void;
+
+    data: { name: string; val: number | string; unit?: string }[];
+    title: string;
+    date?: string;
+}
 
 export type InsertMealTypes = {
     setIsModal: Dispatch<SetStateAction<boolean>>;
@@ -82,3 +91,10 @@ export type InfoDisplayProps = {
     unit?: string;
     val: ReactNode;
 }[];
+
+export type ActivityContextTypes = {
+    handleRemoveMeal: (index: number) => void;
+    handleEditMeal: (item: ConsumedArray, index: number) => void;
+    handleEditWorkout: (item: BurnedArray, index: number) => void;
+    handleRemoveWorkout: (index: number) => void;
+};

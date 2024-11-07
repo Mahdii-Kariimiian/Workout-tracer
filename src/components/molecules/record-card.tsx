@@ -1,18 +1,11 @@
 import { FC } from "react";
 import { CiSquareRemove } from "react-icons/ci";
-import NutrientDetails from "../atoms/info-display";
+import InfoDisplay from "../atoms/info-display";
+import { RecordCardProps } from "../../types";
 
-interface NutrientCardProps {
-    handleEdit: () => void;
-    handleRemoveItem: () => void;
-    data: { name: string; val: number; unit: string }[];
-    title: string;
-    date?: string;
-}
-
-const NutrientCard: FC<NutrientCardProps> = ({
+const RecordCard: FC<RecordCardProps> = ({
     handleEdit,
-    handleRemoveItem,
+    handleRemove,
     data,
     title,
     date,
@@ -28,14 +21,14 @@ const NutrientCard: FC<NutrientCardProps> = ({
                 className="ml-auto cursor-pointer hover:bg-red-600 rounded-sm"
                 onClick={(e) => {
                     e.stopPropagation();
-                    handleRemoveItem();
+                    handleRemove;
                 }}
             >
                 <CiSquareRemove className="text-2xl" />
             </button>
         </div>
-        <NutrientDetails props={data} />
+        <InfoDisplay props={data} />
     </div>
 );
 
-export default NutrientCard;
+export default RecordCard;

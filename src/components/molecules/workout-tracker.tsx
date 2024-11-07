@@ -1,35 +1,32 @@
 import { useContext, useRef, useState } from "react";
-import { Context } from "../../context/context-provider";
 import { CiSquareRemove } from "react-icons/ci";
-import WorkoutForm from "./workout-form";
+import exercise from "../../../public/icons/exercise.png";
+import { ActivityContext } from "../../context/activity-provider";
+import { Context } from "../../context/context-provider";
 import useClickOutside from "../../customHooks/use-click-outside";
 import { BurnedArray } from "../../types";
-import exercise from "../../../public/icons/exercise.png";
 import InfoDisplay from "../atoms/info-display";
+import WorkoutForm from "./workout-form";
+const WorkoutTracker = () => {
+    // Context
+    const { burnedArray, setIsModal, setIsModalExercise, isModalExercise } =
+        useContext(Context);
+    //Activity Context
+    const activityContext = useContext(ActivityContext);
+    // Check if context is undefined
+    if (!activityContext) {
+        throw new Error(
+            "ActivityContext must be used within an ActivityProvider"
+        );
+    }
+    const { handleEditWorkout, handleRemoveWorkout } = activityContext;
 
-const ExerciseTracker = () => {
-    const {
-        burnedArray,
-        setIsModal,
-        setBurnedArray,
-        setIsModalExercise,
-        isModalExercise,
-    } = useContext(Context);
-
+    //State
     const [selectedItem, setSelectedItem] = useState<BurnedArray>();
-
-    const handleRemoveItem = (i: number) => {
-        setBurnedArray(burnedArray.filter((item, index) => i !== index));
-    };
 
     const modalRef = useRef<HTMLDivElement>(null);
 
     useClickOutside({ ref: modalRef, setState: setIsModalExercise });
-
-    const handleEdit = (item: BurnedArray) => {
-        setSelectedItem(item);
-        setIsModalExercise?.(true);
-    };
 
     return (
         <div className="bg-bgLight max-sm:h-96 px-10 py-7 text-darkText h-full flex flex-col pb-2">
@@ -37,7 +34,7 @@ const ExerciseTracker = () => {
                 <div className="text-2xl font-josefin text-darkText flex gap-2">
                     <div className="flex items-baseline gap-2">
                         <img className="w-9" src={exercise} alt="exercise" />
-                        <h1>Exercises</h1>
+                        <h1>Workouts</h1>
                     </div>
                 </div>
                 <button
@@ -48,7 +45,7 @@ const ExerciseTracker = () => {
                     }}
                     className="bg-primary text-white px-3 py-2 rounded-sm uppercase whitespace-nowrap hover:bg-bgHover hover:transition-all hover:ease-in"
                 >
-                    Add New Exercise
+                    Add New Workout
                 </button>
             </div>
 
@@ -58,7 +55,7 @@ const ExerciseTracker = () => {
                         { name: "Category", val: item.categoryName },
                         {
                             name: "Calories Burned",
-                            val: item.caloriesBurned,
+                            val: item.sum,
                             unit: "Kcal",
                         },
                         {
@@ -77,11 +74,11 @@ const ExerciseTracker = () => {
                         <div
                             key={index}
                             className="border border-bgHover px-5 py-3 mb-2 rounded-lg cursor-pointer hover:bg-bgHover hover:text-lightText hover:transition-all hover:ease-in"
-                            onClick={() => handleEdit(item)}
+                            onClick={() => handleEditWorkout(index)}
                         >
                             <div className="flex gap-3 items-baseline mb-2">
                                 <p className="text-xl font-josefin">
-                                    {item.workout}
+                                    {item.name}
                                 </p>
                                 <p className="text-[12px] font-josefin">
                                     {item.date}
@@ -90,7 +87,7 @@ const ExerciseTracker = () => {
                                     className="ml-auto hover:bg-red-600 rounded-sm cursor-pointer hover:transition-all hover:ease-in"
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        handleRemoveItem(index);
+                                        handleRemoveWorkout(index);
                                     }}
                                 >
                                     <CiSquareRemove className="text-2xl" />
@@ -117,4 +114,4 @@ const ExerciseTracker = () => {
     );
 };
 
-export default ExerciseTracker;
+export default WorkoutTracker;

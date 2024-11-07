@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import NutrientInfoCard from "../atoms/nutrient-info-card";
+import MealInfoCard from "../atoms/meal-info-card";
 import { Context } from "../../context/context-provider";
 import { AppContextType, ConsumedBoxProps } from "../../types";
 import meat from "../../../public/icons/meat.png";
@@ -7,7 +7,7 @@ import lipid from "../../../public/icons/lipid.png";
 import waterBottle from "../../../public/icons/water-bottle.png";
 import food from "../../../public/icons/food.png";
 
-const nutrientSummary = () => {
+const MealSummary = () => {
     // States
     const { consumedArray } = useContext<AppContextType>(Context);
     const [proteinSum, setProteinSum] = useState<number>(0);
@@ -57,11 +57,11 @@ const nutrientSummary = () => {
 
     return (
         <div className="h-full">
-            <NutrientInfoCard props={consumedInfo}>
+            <MealInfoCard props={consumedInfo}>
                 grid grid-cols-2 text-darkText overflow-hidden h-full
-            </NutrientInfoCard>
+            </MealInfoCard>
         </div>
     );
 };
 
-export default nutrientSummary;
+export default MealSummary;

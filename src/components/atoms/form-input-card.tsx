@@ -1,9 +1,9 @@
 import React from "react";
 import { InputCardProps } from "../../types";
 
-type PropsType = { props: InputCardProps };
+type FormInputProps = { props: InputCardProps };
 
-const FormInputCard: React.FC<PropsType> = ({ props }) => {
+const FormInputCard: React.FC<FormInputProps> = ({ props }) => {
     return (
         <div
             className={`${

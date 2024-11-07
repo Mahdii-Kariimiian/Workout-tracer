@@ -38,7 +38,7 @@ const Sidebar = () => {
             </div>
 
             <div className="flex sm:flex-col gap-10 sm:mt-36 text-darkText items-center">
-                <Link className="w-10" to={"/exercises"}>
+                <Link className="w-10" to={"/workout"}>
                     <img src={barBell} alt="barBell" />
                 </Link>
                 <Link className="w-10" to={"/meals"}>

@@ -1,22 +1,23 @@
 import { useContext } from "react";
 import { Context } from "../context/context-provider";
-import NutrientCard from "../components/molecules/nutrient-card";
+import RecordCard from "../components/molecules/record-card";
 import { Link } from "react-router-dom";
-import NutrientProvider, {
-    NutrientContext,
-} from "../context/nutrient-provider";
+import ActivityProvider, {
+    ActivityContext,
+} from "../context/activity-provider";
+import LineGraph from "../charts/line";
 
 const MealList = () => {
     const { consumedArray, setIsModal } = useContext(Context);
 
     return (
-        <NutrientProvider>
-            <NutrientContext.Consumer>
+        <ActivityProvider>
+            <ActivityContext.Consumer>
                 {(value) => {
                     if (!value) {
                         return null;
                     }
-                    const { handleRemoveItem, handleEditItem } = value;
+                    const { handleRemoveMeal, handleEditMeal } = value;
 
                     return (
                         <div className="p-10 bg-bgLightGradient">
@@ -38,13 +39,18 @@ const MealList = () => {
                                     Back
                                 </Link>
                             </div>
+                            <div className="my-9 max-w-[1000px]">
+                                <LineGraph array={consumedArray} />
+                            </div>
                             <div className="grid grid-cols-2 gap-5">
                                 {consumedArray.map((meal, index) => (
-                                    <NutrientCard
+                                    <RecordCard
                                         key={index}
-                                        handleEdit={() => handleEditItem(index)}
-                                        handleRemoveItem={() =>
-                                            handleRemoveItem(index)
+                                        handleEditMeal={() =>
+                                            handleEditMeal(index)
+                                        }
+                                        handleRemoveMeal={() =>
+                                            handleRemoveMeal(index)
                                         }
                                         data={[
                                             {
@@ -76,8 +82,8 @@ const MealList = () => {
                         </div>
                     );
                 }}
-            </NutrientContext.Consumer>
-        </NutrientProvider>
+            </ActivityContext.Consumer>
+        </ActivityProvider>
     );
 };
 
