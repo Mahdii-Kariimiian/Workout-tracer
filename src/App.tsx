@@ -1,16 +1,16 @@
 import { Route, Routes } from "react-router-dom";
+import ActivityProvider from "./context/activity-provider";
 import AuthContextProvider from "./context/authorization";
 import ContextProvider from "./context/context-provider";
-import ActivityProvider from "./context/activity-provider";
 // Components
+import MealForm from "./components/molecules/meal-form";
+import WorkoutForm from "./components/molecules/workout-form";
 import Layout from "./components/organisms/Layout";
 import Hero from "./pages/hero";
 import Login from "./pages/login";
-import Router from "./router";
 import MealList from "./pages/meal-list";
 import WorkoutList from "./pages/workout-list";
-import MealForm from "./components/molecules/meal-form";
-import WorkoutForm from "./components/molecules/workout-form";
+import Router from "./router";
 // Css Files
 import "./App.css";
 

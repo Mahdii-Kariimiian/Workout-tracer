@@ -27,7 +27,6 @@ export type BurnedArray = {
 export interface RecordCardProps {
     handleEdit?: () => void;
     handleRemove?: () => void;
-
     data: { name: string; val: number | string; unit?: string }[];
     title: string;
     date?: string;
@@ -94,7 +93,7 @@ export type InfoDisplayProps = {
 
 export type ActivityContextTypes = {
     handleRemoveMeal: (index: number) => void;
-    handleEditMeal: (item: ConsumedArray, index: number) => void;
-    handleEditWorkout: (item: BurnedArray, index: number) => void;
+    handleEditMeal: (index: number) => void;
+    handleEditWorkout: (index: number) => void;
     handleRemoveWorkout: (index: number) => void;
 };

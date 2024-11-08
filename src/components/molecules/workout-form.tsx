@@ -1,13 +1,12 @@
 import { useState, useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../context/context-provider";
 import { AppContextType, BurnedArray, InputCardProps } from "../../types";
 import FormInputCard from "../atoms/form-input-card";
 
 const WorkoutForm = () => {
     // Context
-    const { setBurnedArray, setIsModalExercise } =
-        useContext<AppContextType>(Context);
+    const { setBurnedArray, burnedArray } = useContext<AppContextType>(Context);
 
     // States
     const [categoryName, setCategoryName] = useState<string>("");
@@ -20,15 +19,21 @@ const WorkoutForm = () => {
     const [heartRate, setHeartRate] = useState<number>(0);
     const [comment, setComment] = useState<string>("");
 
-    //Get selected Item Info
-    const { state } = useLocation();
-    const [selectedItem, setSelectedItem] = useState<BurnedArray>();
+    // Get selected Item Info from Params
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [selectedItem, setSelectedItem] = useState<BurnedArray | undefined>(
+        undefined
+    );
 
+    // Load selected item when id is available
     useEffect(() => {
-        state && setSelectedItem(state.item);
-    }, []);
+        if (id !== undefined) {
+            setSelectedItem(burnedArray[parseFloat(id)]);
+        }
+    }, [id, burnedArray]);
 
-    // Put values in Inputs on Edit mode
+    // Update input values when selected item changes
     useEffect(() => {
         if (selectedItem) {
             setCategoryName(selectedItem.categoryName);
@@ -36,61 +41,48 @@ const WorkoutForm = () => {
             setSets(selectedItem.sets);
             setNums(selectedItem.nums);
             setWeight(selectedItem.weight);
-            setSum(selectedItem.sum);
+            setSum(selectedItem.sum); // sum should be unchanged
             setDuration(selectedItem.duration);
             setHeartRate(selectedItem.heartRate);
             setComment(selectedItem.comment);
         }
     }, [selectedItem]);
 
-    // Handle Click in Add and Edit Mode
+    // Handle form submission for both add and edit
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        setIsModalExercise(false);
+
+        // Update or add item in the array
+        const newItem = {
+            categoryName,
+            name,
+            sets,
+            nums,
+            weight,
+            sum, // sum remains unchanged
+            duration,
+            heartRate,
+            comment,
+            date: new Date().toLocaleDateString(),
+        };
 
         if (selectedItem) {
             setBurnedArray?.((prev) =>
                 prev.map((item) =>
-                    item == selectedItem
-                        ? {
-                              ...item,
-                              categoryName,
-                              name,
-                              sets,
-                              nums,
-                              weight,
-                              sum,
-                              duration,
-                              heartRate,
-                              comment,
-                              date: new Date().toLocaleDateString(),
-                          }
-                        : item
+                    item === selectedItem ? { ...item, ...newItem } : item
                 )
             );
         } else {
-            setBurnedArray((prev) => [
-                ...prev,
-                {
-                    categoryName,
-                    name,
-                    sets,
-                    nums,
-                    weight,
-                    sum,
-                    duration,
-                    heartRate,
-                    comment,
-                    date: new Date().toLocaleDateString(),
-                },
-            ]);
+            setBurnedArray?.((prev) => [...prev, newItem]);
         }
+
+        navigate("/workout");
     };
 
-    // Arrays For InputCard Component
+    // Input card configurations
     const inputArrays: InputCardProps = [
         {
-            label: "workout",
+            label: "Workout",
             state: name,
             setStringState: setName,
             options: [
@@ -125,29 +117,32 @@ const WorkoutForm = () => {
         { label: "Sets", state: sets, setNumberState: setSets },
         { label: "Number of Sets", state: nums, setNumberState: setNums },
         { label: "Weight", state: weight, setNumberState: setWeight },
-        {
-            label: "Calories Burned",
-            state: sum,
-            setNumberState: setSum,
-        },
+        { label: "Calories Burned", state: sum, setNumberState: setSum },
         { label: "Heart Rate", state: heartRate, setNumberState: setHeartRate },
         { label: "Duration", state: duration, setNumberState: setDuration },
         { label: "Comment", state: comment, setStringState: setComment },
     ];
 
     return (
-        <div className="p-10 bg-bgLight text-darkText rounded-lg font-josefin">
-            <form noValidate className="flex flex-col">
-                <FormInputCard props={inputArrays} />
-                <button
-                    className="bg-primary text-lightText px-3 mt-4 py-2 hover:bg-bgHover hover:transition-all hover:ease-in"
-                    onClick={(e) => {
-                        handleClick(e);
-                    }}
-                >
-                    Submit
-                </button>
-            </form>
+        <div className="fixed inset-0 flex justify-center items-center z-10 bg-black bg-opacity-50">
+            <div className="p-10 bg-bgLight rounded-lg font-josefin text-darkText">
+                <form noValidate className="flex flex-col">
+                    <FormInputCard props={inputArrays} />
+                    <button
+                        className="bg-primary text-lightText px-3 mt-4 py-2 hover:bg-bgHover hover:transition-all hover:ease-in"
+                        onClick={(e) => handleClick(e)}
+                    >
+                        {selectedItem ? "Update Workout" : "Add Workout"}
+                    </button>
+                    <button
+                        type="button"
+                        className=" text-darkText px-3 py-2"
+                        onClick={() => navigate(-1)}
+                    >
+                        Back
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

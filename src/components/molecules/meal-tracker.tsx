@@ -1,16 +1,14 @@
 import { useContext } from "react";
 import lunch from "../../../public/icons/lunch-box.png";
 import { Context } from "../../context/context-provider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ConsumedArray } from "../../types";
+import { ActivityContext } from "../../context/activity-provider";
 import RecordCard from "./record-card";
 
 const MealTracker = () => {
-    const { setIsModal, consumedArray, setConsumedArray } = useContext(Context);
-    const handleRemoveItem = (index: number) => {
-        setConsumedArray(consumedArray.filter((_, i) => i !== index));
-    };
-    const navigate = useNavigate();
+    const { consumedArray } = useContext(Context);
+    const { handleEditMeal, handleRemoveMeal } = useContext(ActivityContext);
 
     return (
         <div className="p-10 max-sm:h-96 text-lightText h-full flex flex-col bg-gradientPrimary ">
@@ -22,18 +20,17 @@ const MealTracker = () => {
                 <Link
                     to="/meals/form"
                     className="bg-bgLight text-darkText px-3 py-2 rounded-sm uppercase hover:bg-bgHover hover:text-lightText"
-                    onClick={() => setIsModal?.(true)}
                 >
                     Add New Meal
                 </Link>
             </div>
             <div className="flex flex-col overflow-auto gap-2">
-                {consumedArray?.map((meal: ConsumedArray, index: number) => (
-                    <div key={index}>
+                {consumedArray?.map((meal: ConsumedArray, index: number) => {
+                    return (
                         <RecordCard
                             key={index}
-                            handleEditItem={() => navigate(`/meals/form/${index}`)}
-                            handleRemoveItem={() => handleRemoveItem(index)}
+                            handleEdit={() => handleEditMeal(index)}
+                            handleRemove={() => handleRemoveMeal(index)}
                             data={[
                                 { name: "Carbs", val: meal.carbs, unit: "gr" },
                                 { name: "Fat", val: meal.fat, unit: "gr" },
@@ -42,13 +39,18 @@ const MealTracker = () => {
                                     val: meal.protein,
                                     unit: "gr",
                                 },
+                                {
+                                    name: "Water",
+                                    val: meal.water,
+                                    unit: "L",
+                                },
                                 { name: "Sum", val: meal.sum, unit: "gr" },
                             ]}
                             title={meal.name}
                             date={meal.date}
                         />
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );

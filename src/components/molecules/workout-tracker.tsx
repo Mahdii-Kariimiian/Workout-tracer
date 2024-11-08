@@ -1,16 +1,12 @@
-import { useContext, useRef, useState } from "react";
-import { CiSquareRemove } from "react-icons/ci";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import exercise from "../../../public/icons/exercise.png";
 import { ActivityContext } from "../../context/activity-provider";
 import { Context } from "../../context/context-provider";
-import useClickOutside from "../../customHooks/use-click-outside";
-import { BurnedArray } from "../../types";
-import InfoDisplay from "../atoms/info-display";
-import WorkoutForm from "./workout-form";
+import RecordCard from "./record-card";
 const WorkoutTracker = () => {
     // Context
-    const { burnedArray, setIsModal, setIsModalExercise, isModalExercise } =
-        useContext(Context);
+    const { burnedArray } = useContext(Context);
     //Activity Context
     const activityContext = useContext(ActivityContext);
     // Check if context is undefined
@@ -21,13 +17,6 @@ const WorkoutTracker = () => {
     }
     const { handleEditWorkout, handleRemoveWorkout } = activityContext;
 
-    //State
-    const [selectedItem, setSelectedItem] = useState<BurnedArray>();
-
-    const modalRef = useRef<HTMLDivElement>(null);
-
-    useClickOutside({ ref: modalRef, setState: setIsModalExercise });
-
     return (
         <div className="bg-bgLight max-sm:h-96 px-10 py-7 text-darkText h-full flex flex-col pb-2">
             <div className="flex justify-between gap-5 items-end mb-5">
@@ -37,16 +26,12 @@ const WorkoutTracker = () => {
                         <h1>Workouts</h1>
                     </div>
                 </div>
-                <button
-                    onClick={() => {
-                        setSelectedItem(undefined);
-                        setIsModal(false);
-                        setIsModalExercise(!isModalExercise);
-                    }}
+                <Link
+                    to={"/workout/form"}
                     className="bg-primary text-white px-3 py-2 rounded-sm uppercase whitespace-nowrap hover:bg-bgHover hover:transition-all hover:ease-in"
                 >
                     Add New Workout
-                </button>
+                </Link>
             </div>
 
             <div className="flex-1 overflow-y-auto pr-5">
@@ -71,45 +56,17 @@ const WorkoutTracker = () => {
                     ];
 
                     return (
-                        <div
+                        <RecordCard
+                            data={inputArrays}
                             key={index}
-                            className="border border-bgHover px-5 py-3 mb-2 rounded-lg cursor-pointer hover:bg-bgHover hover:text-lightText hover:transition-all hover:ease-in"
-                            onClick={() => handleEditWorkout(index)}
-                        >
-                            <div className="flex gap-3 items-baseline mb-2">
-                                <p className="text-xl font-josefin">
-                                    {item.name}
-                                </p>
-                                <p className="text-[12px] font-josefin">
-                                    {item.date}
-                                </p>
-                                <div
-                                    className="ml-auto hover:bg-red-600 rounded-sm cursor-pointer hover:transition-all hover:ease-in"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleRemoveWorkout(index);
-                                    }}
-                                >
-                                    <CiSquareRemove className="text-2xl" />
-                                </div>
-                            </div>
-                            <InfoDisplay props={inputArrays} />
-                        </div>
+                            handleEdit={() => handleEditWorkout(index)}
+                            handleRemove={() => handleRemoveWorkout(index)}
+                            date={item.date}
+                            title={item.name}
+                        />
                     );
                 })}
             </div>
-
-            {isModalExercise && (
-                <div>
-                    <div className="z-0 absolute inset-0 bg-black opacity-90"></div>
-                    <div
-                        ref={modalRef}
-                        className="absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%]"
-                    >
-                        <WorkoutForm selectedItem={selectedItem} />
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

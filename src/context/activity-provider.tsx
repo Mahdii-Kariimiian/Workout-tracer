@@ -1,12 +1,14 @@
 import { FC, ReactNode, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "./context-provider";
 import { ActivityContextTypes } from "../types";
-import { BurnedArray, ConsumedArray } from "../types";
+import { Context } from "./context-provider";
 
-export const ActivityContext = createContext<ActivityContextTypes | undefined>(
-    undefined
-);
+export const ActivityContext = createContext<ActivityContextTypes>({
+    handleRemoveMeal: () => {},
+    handleEditMeal: () => {},
+    handleEditWorkout: () => {},
+    handleRemoveWorkout: () => {},
+});
 
 type ActivityProviderProps = {
     children: ReactNode;
@@ -24,11 +26,11 @@ const ActivityProvider: FC<ActivityProviderProps> = ({ children }) => {
         setBurnedArray(burnedArray.filter((_, i) => i !== index));
     };
 
-    const handleEditMeal = (item: ConsumedArray, index: number) => {
-        navigate(`/meals/form/${index}`, { state: { item } });
+    const handleEditMeal = (index: number) => {
+        navigate(`/meals/form/${index}`);
     };
-    const handleEditWorkout = (item: BurnedArray, index: number) => {
-        navigate(`/workout/form/${index} `, { state: { item } });
+    const handleEditWorkout = (index: number) => {
+        navigate(`/workout/form/${index}`);
     };
 
     return (

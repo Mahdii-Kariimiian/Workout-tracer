@@ -46,10 +46,8 @@ const MealList = () => {
                                 {consumedArray.map((meal, index) => (
                                     <RecordCard
                                         key={index}
-                                        handleEditMeal={() =>
-                                            handleEditMeal(index)
-                                        }
-                                        handleRemoveMeal={() =>
+                                        handleEdit={() => handleEditMeal(index)}
+                                        handleRemove={() =>
                                             handleRemoveMeal(index)
                                         }
                                         data={[

@@ -26,13 +26,7 @@ type LineGraphProps = {
 };
 
 const LineGraph: FC<LineGraphProps> = ({ array }) => {
-    console.log(array);
     const options = {};
-    console.log(
-        array.map((item) => {
-            return item.sum;
-        })
-    );
     const lineData = {
         labels: array.map((item) => {
             return item.name;

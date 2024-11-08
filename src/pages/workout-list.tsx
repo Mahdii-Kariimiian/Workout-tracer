@@ -6,7 +6,7 @@ import { ActivityContext } from "../context/activity-provider";
 import { Link } from "react-router-dom";
 
 const WorkoutList = () => {
-    const { burnedArray, setIsModalExercise } = useContext(Context);
+    const { burnedArray } = useContext(Context);
     const { handleEditWorkout, handleRemoveWorkout } =
         useContext(ActivityContext) ?? {};
 
@@ -17,7 +17,6 @@ const WorkoutList = () => {
                 <Link
                     to="/workout/form"
                     className="bg-primary text-lightText ml-auto mr-5 px-3 py-2 rounded-md uppercase hover:bg-bgHover transition-all hover:ease-in"
-                    onClick={() => setIsModalExercise?.(true)}
                 >
                     Add New Workout
                 </Link>
@@ -33,52 +32,49 @@ const WorkoutList = () => {
                 <LineGraph array={burnedArray} />
             </div>
 
-            {burnedArray.map((workout, index) => {
-                return (
-                    <RecordCard
-                        key={index}
-                        handleEdit={() =>
-                            handleEditWorkout &&
-                            handleEditWorkout(workout, index)
-                        }
-                        handleRemove={() =>
-                            handleRemoveWorkout && handleRemoveWorkout(index)
-                        }
-                        data={[
-                            {
-                                name: "Duration",
-                                val: workout.duration,
-                                unit: "min",
-                            },
-                            {
-                                name: "Category",
-                                val: workout.categoryName,
-                            },
-                            { name: "Comment", val: workout.comment },
-                            {
-                                name: "Calories Burned",
-                                val: workout.sum,
-                                unit: "Kcal",
-                            },
-                            {
-                                name: "Set",
-                                val: workout.sets,
-                            },
-                            {
-                                name: "Number of Sets",
-                                val: workout.nums,
-                            },
-                            {
-                                name: "Heart Rate",
-                                val: workout.heartRate,
-                                unit: "Kcal",
-                            },
-                        ]}
-                        title={workout.name}
-                        date={workout.date}
-                    />
-                );
-            })}
+            <div className="grid grid-cols-2 gap-5">
+                {burnedArray.map((workout, index) => {
+                    return (
+                        <RecordCard
+                            key={index}
+                            handleEdit={() => handleEditWorkout(index)}
+                            handleRemove={() => handleRemoveWorkout(index)}
+                            data={[
+                                {
+                                    name: "Duration",
+                                    val: workout.duration,
+                                    unit: "min",
+                                },
+                                {
+                                    name: "Category",
+                                    val: workout.categoryName,
+                                },
+                                { name: "Comment", val: workout.comment },
+                                {
+                                    name: "Calories Burned",
+                                    val: workout.sum,
+                                    unit: "Kcal",
+                                },
+                                {
+                                    name: "Set",
+                                    val: workout.sets,
+                                },
+                                {
+                                    name: "Number of Sets",
+                                    val: workout.nums,
+                                },
+                                {
+                                    name: "Heart Rate",
+                                    val: workout.heartRate,
+                                    unit: "Kcal",
+                                },
+                            ]}
+                            title={workout.name}
+                            date={workout.date}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };
