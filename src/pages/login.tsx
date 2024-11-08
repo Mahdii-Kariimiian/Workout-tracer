@@ -5,7 +5,7 @@ import { authContext } from "../context/authorization";
 const Login = () => {
     const [password, setPassword] = useState<string>("");
     const [username, setUsername] = useState<string>("");
-    const { setLoginArray, setIsLoginOpen, isLogged } = useContext(authContext);
+    const { setLoginArray, isLogged } = useContext(authContext);
 
     const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();
@@ -16,7 +16,6 @@ const Login = () => {
                 password: password,
             };
         });
-        setIsLoginOpen(false);
     };
 
     if (isLogged) {

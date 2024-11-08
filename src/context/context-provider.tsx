@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useState } from "react";
+import { createContext, FC, ReactNode, useState, useEffect } from "react";
 import { AppContextType, BurnedArray, ConsumedArray } from "../types";
 import MealProvider from "./activity-provider";
 
@@ -24,6 +24,30 @@ const ContextProvider: FC<ChildrenType> = ({ children }) => {
     // Initialize state from localStorage
     const [consumedArray, setConsumedArray] = useState<ConsumedArray[]>([]);
     const [burnedArray, setBurnedArray] = useState<BurnedArray[]>([]);
+
+    // Save to localStorage when arrays change
+    useEffect(() => {
+        const savedBurned = localStorage.getItem("burnedArray");
+        setBurnedArray(savedBurned ? JSON.parse(savedBurned) : []);
+
+        const savedConsumed = localStorage.getItem("consumedArray");
+        setConsumedArray(savedConsumed ? JSON.parse(savedConsumed) : []);
+    }, []);
+
+    useEffect(() => {
+        if (consumedArray.length >= 0) {
+            localStorage.setItem(
+                "consumedArray",
+                JSON.stringify(consumedArray)
+            );
+        }
+    }, [consumedArray]);
+
+    useEffect(() => {
+        if (burnedArray.length >= 0) {
+            localStorage.setItem("burnedArray", JSON.stringify(burnedArray));
+        }
+    }, [burnedArray]);
 
     return (
         <MealProvider>

@@ -24,7 +24,7 @@ const MealTracker = () => {
                     Add New Meal
                 </Link>
             </div>
-            <div className="flex flex-col overflow-auto gap-2">
+            <div className="flex flex-col overflow-auto gap-2 pr-5">
                 {consumedArray?.map((meal: ConsumedArray, index: number) => {
                     return (
                         <RecordCard

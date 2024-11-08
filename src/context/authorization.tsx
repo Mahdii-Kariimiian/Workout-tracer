@@ -23,9 +23,6 @@ export const authContext = createContext<authorizationType>({
 });
 
 const Authorization: FC<AuthorizationChildrenType> = ({ children }) => {
-    //Context
-    const { burnedArray, consumedArray, setBurnedArray, setConsumedArray } =
-        useContext(Context);
     //States
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
@@ -54,30 +51,6 @@ const Authorization: FC<AuthorizationChildrenType> = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("userPass", userPass);
     }, []);
-
-    // Save to localStorage when arrays change
-    useEffect(() => {
-        const savedBurned = localStorage.getItem("burnedArray");
-        setBurnedArray(savedBurned ? JSON.parse(savedBurned) : []);
-
-        const savedConsumed = localStorage.getItem("consumedArray");
-        setConsumedArray(savedConsumed ? JSON.parse(savedConsumed) : []);
-    }, []);
-
-    useEffect(() => {
-        if (consumedArray.length > 0) {
-            localStorage.setItem(
-                "consumedArray",
-                JSON.stringify(consumedArray)
-            );
-            if (burnedArray.length > 0) {
-                localStorage.setItem(
-                    "burnedArray",
-                    JSON.stringify(burnedArray)
-                );
-            }
-        }
-    }, [consumedArray, burnedArray]);
 
     return (
         <authContext.Provider
